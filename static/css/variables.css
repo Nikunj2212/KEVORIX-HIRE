@@ -1,0 +1,35 @@
+:root {
+
+    /* Brand Colors */
+    --primary: #4F46E5;
+    --primary-hover: #4338CA;
+    --secondary: #7C3AED;
+
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+
+    /* Transition */
+    --transition: all .3s ease;
+
+    /* Layout */
+    --container-width: 1320px;
+
+    /* Fonts */
+    --font-heading: "Poppins", sans-serif;
+    --font-body: "Inter", sans-serif;
+
+    /* Shadow */
+    --shadow-sm: 0 4px 15px rgba(0,0,0,.15);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,.25);
+
+    /* Navbar */
+    --navbar-height: 80px;
+
+}

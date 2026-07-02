@@ -1,0 +1,30 @@
+/* DARK */
+
+html[data-theme="dark"]{
+
+    --bg:#09090B;
+    --surface:#111827;
+    --card:#18181B;
+
+    --text:#F8FAFC;
+    --text-light:#94A3B8;
+
+    --border:#27272A;
+
+}
+
+
+/* LIGHT */
+
+html[data-theme="light"]{
+
+    --bg:#FFFFFF;
+    --surface:#F8FAFC;
+    --card:#FFFFFF;
+
+    --text:#111827;
+    --text-light:#64748B;
+
+    --border:#E5E7EB;
+
+}

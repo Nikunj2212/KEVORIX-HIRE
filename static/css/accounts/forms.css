@@ -1,0 +1,474 @@
+/* =====================================
+   AUTH VARIABLES
+===================================== */
+
+.auth-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:80px 20px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 15% 20%, rgba(99,102,241,.12), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(6,182,212,.10), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(168,85,247,.10), transparent 35%),
+        var(--background);
+
+}
+.auth-page::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:550px;
+
+    height:550px;
+
+    left:-180px;
+
+    top:-180px;
+
+    background:rgba(99,102,241,.15);
+
+    filter:blur(120px);
+
+    border-radius:50%;
+
+}
+.auth-page::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+
+    height:450px;
+
+    right:-150px;
+
+    bottom:-150px;
+
+    background:rgba(168,85,247,.15);
+
+    filter:blur(120px);
+
+    border-radius:50%;
+
+}
+
+/* =====================================
+   AUTH CONTAINER
+===================================== */
+
+.auth-container{
+
+    width:100%;
+
+    max-width:520px;
+
+    margin:auto;
+
+}
+
+
+/* =====================================
+   AUTH CARD
+===================================== */
+
+.auth-card{
+
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+
+    max-width:560px;
+
+    padding:45px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.80);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    box-shadow:
+
+        0 30px 80px rgba(15,23,42,.10),
+
+        inset 0 1px rgba(255,255,255,.6);
+
+}
+html[data-theme="dark"] .auth-card{
+
+    background:rgba(18,18,30,.78);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+.auth-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:28px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(79,70,229,.20),
+        transparent,
+        rgba(6,182,212,.12)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.auth-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.auth-header h1{
+
+    margin-bottom:12px;
+
+}
+
+.auth-header p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.auth-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+
+/* =====================================
+   TWO COLUMN
+===================================== */
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+
+/* =====================================
+   GROUP
+===================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.form-group label{
+
+    font-weight:600;
+
+    color:var(--text);
+
+    font-size:.95rem;
+
+}
+
+
+/* =====================================
+   INPUT
+===================================== */
+
+.form-control{
+
+    width:100%;
+
+    height:56px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:0 18px;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    transition:var(--transition);
+
+    outline:none;
+
+}
+
+.form-control:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(79,70,229,.10);
+
+}
+
+
+/* =====================================
+   PASSWORD
+===================================== */
+
+.password-wrapper{
+
+    position:relative;
+
+}
+
+.password-toggle{
+
+    position:absolute;
+
+    right:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    user-select:none;
+
+    font-size:1.1rem;
+
+}
+
+
+/* =====================================
+   CHECKBOX
+===================================== */
+
+.checkbox-group{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+.checkbox-group input{
+
+    margin-top:5px;
+
+}
+
+.checkbox-group label{
+
+    color:var(--text-light);
+
+    line-height:1.6;
+
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.auth-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.auth-footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    color:var(--text-light);
+
+}
+
+.auth-footer a{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+
+/* =====================================
+   ERROR
+===================================== */
+
+.error-text{
+
+    color:#ef4444;
+
+    font-size:.9rem;
+
+    margin-top:4px;
+
+}
+
+
+/* =====================================
+   LIGHT MODE
+===================================== */
+
+html[data-theme="light"] .auth-card{
+
+    box-shadow:0 20px 60px rgba(15,23,42,.08);
+
+}
+
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+html[data-theme="dark"] .auth-card{
+
+    background:#131B2D;
+
+}
+
+/* =====================================
+   PASSWORD STATUS
+===================================== */
+
+.password-strength,
+.password-match{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:.85rem;
+
+    font-weight:500;
+
+}
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:768px){
+
+    .auth-card{
+
+        padding:28px;
+
+    }
+
+    .form-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+.password-strength{
+
+    margin-top:10px;
+
+}
+
+.strength-bar{
+
+    width:100%;
+
+    height:8px;
+
+    background:#e5e7eb;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    margin:12px 0;
+
+}
+
+.strength-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:#10b981;
+
+    border-radius:50px;
+
+    transition:width .3s ease;
+
+}

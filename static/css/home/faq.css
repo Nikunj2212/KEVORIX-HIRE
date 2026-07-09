@@ -1,0 +1,291 @@
+/* =====================================
+   FAQ SECTION
+===================================== */
+
+.faq{
+
+    position:relative;
+
+}
+
+.faq-list{
+
+    max-width:900px;
+
+    margin:70px auto 0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+
+/* =====================================
+   FAQ CARD
+===================================== */
+
+.faq-item{
+
+    position:relative;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.faq-item:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 25px 60px rgba(79,70,229,.12);
+
+}
+
+
+/* Premium Border */
+
+.faq-item::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:22px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(79,70,229,.22),
+        transparent,
+        rgba(6,182,212,.12)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================
+   QUESTION
+===================================== */
+
+.faq-question{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    padding:28px 32px;
+
+    cursor:pointer;
+
+}
+
+.faq-question h3{
+
+    flex:1;
+
+    margin:0;
+
+    line-height:1.5;
+
+}
+
+
+/* =====================================
+   ICON
+===================================== */
+
+.faq-icon{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+
+    color:#fff;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    flex-shrink:0;
+
+    box-shadow:0 10px 25px rgba(79,70,229,.25);
+
+}
+
+.faq-icon:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:0 15px 35px rgba(79,70,229,.35);
+
+}
+.faq-item:hover .faq-icon{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    transform:rotate(180deg);
+
+}
+
+
+/* =====================================
+   ANSWER
+===================================== */
+
+.faq-answer{
+
+    max-height:0;
+    overflow:hidden;
+
+    padding:0 32px;
+
+    transition:
+        max-height .45s ease,
+        padding .35s ease;
+
+}
+.faq-item.active .faq-answer{
+
+    max-height:250px;
+
+    padding:0 32px 28px;
+
+}
+.faq-answer p{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+    visibility:visible;
+
+    opacity:1;
+
+}
+
+
+/* =====================================
+   ACTIVE ITEM
+===================================== */
+
+.faq-item.active{
+
+    border-color:rgba(79,70,229,.35);
+
+}
+
+.faq-item.active .faq-icon{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+
+/* =====================================
+   LIGHT MODE
+===================================== */
+
+html[data-theme="light"] .faq-item{
+
+    box-shadow:0 20px 60px rgba(15,23,42,.08);
+
+}
+
+html[data-theme="light"] .faq-item:hover{
+
+    box-shadow:0 25px 70px rgba(79,70,229,.10);
+
+}
+
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+html[data-theme="dark"] .faq-item{
+
+    background:#131B2D;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:768px){
+
+    .faq{
+
+        padding:90px 0;
+
+    }
+
+    .faq-question{
+
+        padding:22px;
+
+    }
+
+    .faq-answer{
+
+        padding:0 22px 22px;
+
+    }
+
+    .faq-question h3{
+
+        font-size:1rem;
+
+        line-height:1.6;
+
+    }
+
+}   

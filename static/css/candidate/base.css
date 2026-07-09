@@ -1,0 +1,86 @@
+/* =====================================
+   CANDIDATE LAYOUT
+===================================== */
+
+.candidate-layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:var(--bg);
+
+}
+
+.candidate-wrapper{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-left:290px;
+
+}
+
+.candidate-content{
+
+    flex:1;
+
+    padding:35px;
+
+}
+/* ===============================
+   CUSTOM SCROLLBAR
+================================ */
+
+/* ======================================
+   AUTO HIDE SCROLLBAR
+====================================== */
+
+/* Chrome, Edge, Safari */
+
+::-webkit-scrollbar{
+
+    width:0;
+
+    transition:width .3s ease;
+
+}
+
+body:hover::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#7C5CFF;
+
+}
+
+/* Firefox */
+
+html{
+
+    scrollbar-width:thin;
+
+    scrollbar-color:var(--primary) transparent;
+
+}

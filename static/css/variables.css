@@ -1,35 +1,126 @@
-:root {
+:root{
 
-    /* Brand Colors */
-    --primary: #4F46E5;
-    --primary-hover: #4338CA;
-    --secondary: #7C3AED;
+    /* =====================================
+       BRAND COLORS
+    ===================================== */
 
-    --success: #10B981;
-    --warning: #F59E0B;
-    --danger: #EF4444;
+    --primary:#6366F1;
+    --primary-hover:#5B5FF5;
+    --secondary:#8B5CF6;
 
-    /* Border Radius */
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 18px;
-    --radius-xl: 24px;
+    --success:#22C55E;
+    --warning:#F59E0B;
+    --danger:#EF4444;
 
-    /* Transition */
-    --transition: all .3s ease;
+    /* =====================================
+       DARK THEME
+    ===================================== */
 
-    /* Layout */
-    --container-width: 1320px;
+    --bg:#0B1120;
 
-    /* Fonts */
-    --font-heading: "Poppins", sans-serif;
-    --font-body: "Inter", sans-serif;
+    --surface:#111827;
 
-    /* Shadow */
-    --shadow-sm: 0 4px 15px rgba(0,0,0,.15);
-    --shadow-lg: 0 20px 60px rgba(0,0,0,.25);
+    --surface-2:#1E293B;
 
-    /* Navbar */
-    --navbar-height: 80px;
+    --card:#151A28;
+
+    --card-hover:#1F2937;
+
+    --text:#FFFFFF;
+
+    --text-light:#CBD5E1;
+
+    --text-muted:#94A3B8;
+
+    --border:rgba(255,255,255,.08);
+
+    --primary-soft:rgba(99,102,241,.10);
+
+    /* =====================================
+       GRADIENTS
+    ===================================== */
+
+    --gradient-primary:linear-gradient(
+      135deg,
+      #6366F1,
+      #8B5CF6
+    );
+
+    /* =====================================
+       TYPOGRAPHY
+    ===================================== */
+
+    --font-heading:"Poppins",sans-serif;
+
+    --font-body:"Inter",sans-serif;
+
+    /* =====================================
+       BORDER RADIUS
+    ===================================== */
+
+    --radius-sm:8px;
+
+    --radius-md:12px;
+
+    --radius-lg:18px;
+
+    --radius-xl:24px;
+
+    /* =====================================
+       SHADOW
+    ===================================== */
+
+    --shadow-sm:
+        0 4px 15px rgba(0,0,0,.15);
+
+    --shadow-lg:
+        0 20px 60px rgba(0,0,0,.25);
+
+    /* =====================================
+       LAYOUT
+    ===================================== */
+
+    --container-width:1320px;
+
+    --navbar-height:72px;
+
+    --nav-gap:40px;
+
+    --logo-gap:12px;
+
+    --section-padding:100px;
+
+    /* =====================================
+       TRANSITION
+    ===================================== */
+
+    --transition:.3s ease;
+
+}
+/* =====================================
+   LIGHT THEME
+===================================== */
+
+html[data-theme="light"]{
+
+    --bg:#F5F7FB;
+
+    --surface:#FFFFFF;
+
+    --surface-2:#F8FAFC;
+
+    --card:#FFFFFF;
+
+    --card-hover:#FFFFFF;
+
+    --text:#111827;
+
+    --text-light:#475569;
+
+    --text-muted:#64748B;
+
+    --border:#E5E7EB;
+
+    --primary-soft:rgba(99,102,241,.10);
 
 }

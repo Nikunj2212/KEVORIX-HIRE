@@ -1,0 +1,724 @@
+{% extends "candidate/base/candidate_base.html" %}
+
+{% load static %}
+
+{% block title %}
+Dashboard | KEVORIX Hire
+{% endblock %}
+
+{% block extra_css %}
+
+<link
+rel="stylesheet"
+href="{% static 'css/candidate/dashboard.css' %}">
+
+{% endblock %}
+
+{% block candidate_content %}
+
+<section class="dashboard-hero">
+
+    <div class="hero-left">
+
+        <span id="greeting">
+
+            Welcome
+
+        </span>
+
+        <h1>
+
+            Welcome Back, Nikunj 👋
+
+        </h1>
+
+        <p>
+
+            Continue building your career with KEVORIX AI.
+
+        </p>
+
+        <button class="btn btn-primary">
+
+            Complete Profile
+
+        </button>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="hero-card">
+
+            <h3>
+
+                Profile Completion
+
+            </h3>
+
+            <h2>
+
+                78%
+
+            </h2>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="dashboard-stats">
+
+    <div class="stat-card">
+
+        <div class="stat-card-top">
+
+            <i class="bi bi-person-check-fill"></i>
+
+            <span>Profile Completion</span>
+
+        </div>
+
+        <h2>78%</h2>
+
+        <div class="progress">
+
+            <div class="progress-fill" style="width:78%"></div>
+
+        </div>
+
+        <small>Complete your profile to increase visibility.</small>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-card-top">
+
+            <i class="bi bi-stars"></i>
+
+            <span>Resume Score</span>
+
+        </div>
+
+        <h2>86 / 100</h2>
+
+        <small>Excellent resume quality.</small>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-card-top">
+
+            <i class="bi bi-send-check-fill"></i>
+
+            <span>Applied Jobs</span>
+
+        </div>
+
+        <h2>18</h2>
+
+        <small>Applications submitted.</small>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-card-top">
+
+            <i class="bi bi-bookmark-heart-fill"></i>
+
+            <span>Saved Jobs</span>
+
+        </div>
+
+        <h2>12</h2>
+
+        <small>Jobs saved for later.</small>
+
+    </div>
+
+</section>
+
+<section class="dashboard-grid">
+
+    <!-- AI Resume Insights -->
+
+    <div class="dashboard-widget">
+
+        <div class="widget-header">
+
+            <h3>AI Resume Insights</h3>
+
+            <a href="#">Improve</a>
+
+        </div>
+
+        <div class="resume-score">
+
+            <div class="score-circle">
+
+                <h2>86</h2>
+
+                <small>/100</small>
+
+            </div>
+
+            <div class="score-info">
+
+                <h4>Excellent Resume</h4>
+
+                <p>
+
+                    Your resume performs better than 82% of candidates.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="insight-list">
+
+            <div class="insight success">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Professional Summary is strong</span>
+
+            </div>
+
+            <div class="insight warning">
+
+                <i class="bi bi-exclamation-circle-fill"></i>
+
+                <span>Add more technical skills</span>
+
+            </div>
+
+            <div class="insight danger">
+
+                <i class="bi bi-x-circle-fill"></i>
+
+                <span>Add one more project</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Job Recommendations -->
+
+    <div class="dashboard-widget">
+
+        <div class="widget-header">
+
+            <h3>Recommended Jobs</h3>
+
+            <a href="#">View All</a>
+
+        </div>
+
+        <div class="job-card">
+
+            <div>
+
+                <h4>Python Django Developer</h4>
+
+                <small>Google • Remote</small>
+
+            </div>
+
+            <button class="btn-primary">
+
+                Apply
+
+            </button>
+
+        </div>
+
+        <div class="job-card">
+
+            <div>
+
+                <h4>Backend Engineer</h4>
+
+                <small>Amazon • Bengaluru</small>
+
+            </div>
+
+            <button class="btn-primary">
+
+                Apply
+
+            </button>
+
+        </div>
+
+        <div class="job-card">
+
+            <div>
+
+                <h4>Software Engineer</h4>
+
+                <small>Microsoft • Hyderabad</small>
+
+            </div>
+
+            <button class="btn-primary">
+
+                Apply
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="dashboard-grid">
+
+    <!-- Today's Progress -->
+
+    <div class="dashboard-widget">
+
+        <div class="widget-header">
+
+            <h3>Today's Progress</h3>
+
+            <span>72%</span>
+
+        </div>
+
+        <div class="progress-list">
+
+            <div class="progress-item completed">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Complete Profile</span>
+
+            </div>
+
+            <div class="progress-item completed">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Upload Resume</span>
+
+            </div>
+
+            <div class="progress-item">
+
+                <i class="bi bi-circle"></i>
+
+                <span>Add Skills</span>
+
+            </div>
+
+            <div class="progress-item">
+
+                <i class="bi bi-circle"></i>
+
+                <span>Apply to 3 Jobs</span>
+
+            </div>
+
+        </div>
+
+        <div class="widget-progress">
+
+            <div class="widget-progress-fill" style="width:72%;"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Applications -->
+
+    <div class="dashboard-widget">
+
+        <div class="widget-header">
+
+            <h3>Recent Applications</h3>
+
+            <a href="#">View All</a>
+
+        </div>
+
+        <div class="application-item">
+
+            <div>
+
+                <h4>Google</h4>
+
+                <small>Python Developer</small>
+
+            </div>
+
+            <span>2h ago</span>
+
+        </div>
+
+        <div class="application-item">
+
+            <div>
+
+                <h4>Amazon</h4>
+
+                <small>Backend Developer</small>
+
+            </div>
+
+            <span>Yesterday</span>
+
+        </div>
+
+        <div class="application-item">
+
+            <div>
+
+                <h4>TCS</h4>
+
+                <small>Software Engineer</small>
+
+            </div>
+
+            <span>3 Days</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="dashboard-overview">
+
+    <div class="overview-left">
+
+        <div class="overview-card">
+
+            <div class="card-header">
+
+                <h3>Recent Activity</h3>
+
+                <a href="#">View All</a>
+
+            </div>
+
+            <div class="activity-item">
+
+                <div class="activity-icon">
+
+                    <i class="bi bi-send-check"></i>
+
+                </div>
+
+                <div>
+
+                    <h4>Application Submitted</h4>
+
+                    <p>Frontend Developer - Google</p>
+
+                    <small>10 Minutes Ago</small>
+
+                </div>
+
+            </div>
+
+            <div class="activity-item">
+
+                <div class="activity-icon">
+
+                    <i class="bi bi-stars"></i>
+
+                </div>
+
+                <div>
+
+                    <h4>Resume Score Updated</h4>
+
+                    <p>Your score increased to 86.</p>
+
+                    <small>Today</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="overview-right">
+
+        <div class="overview-card">
+
+            <div class="card-header">
+
+                <h3>Upcoming Interview</h3>
+
+            </div>
+
+            <div class="interview-box">
+
+                <h4>Google</h4>
+
+                <p>Python Django Developer</p>
+
+                <span>Tomorrow • 10:30 AM</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="career-section">
+
+    <div class="career-card">
+
+        <div class="career-header">
+
+            <h3>🤖 AI Career Suggestions</h3>
+
+            <a href="#">View All</a>
+
+        </div>
+
+        <div class="career-list">
+
+            <div class="career-item">
+
+                <div class="career-icon">
+
+                    <i class="bi bi-lightbulb"></i>
+
+                </div>
+
+                <div>
+
+                    <h4>Improve Django Skills</h4>
+
+                    <p>Complete one advanced Django REST API project.</p>
+
+                </div>
+
+            </div>
+
+            <div class="career-item">
+
+                <div class="career-icon">
+
+                    <i class="bi bi-award"></i>
+
+                </div>
+
+                <div>
+
+                    <h4>Add Certifications</h4>
+
+                    <p>Upload Python or AWS certificates to increase profile strength.</p>
+
+                </div>
+
+            </div>
+
+            <div class="career-item">
+
+                <div class="career-icon">
+
+                    <i class="bi bi-graph-up-arrow"></i>
+
+                </div>
+
+                <div>
+
+                    <h4>Increase Resume Score</h4>
+
+                    <p>Your resume can reach 95+ by adding projects and keywords.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="learning-section">
+
+    <div class="learning-card">
+
+        <div class="learning-header">
+
+            <h3>🎓 Learning Recommendations</h3>
+
+            <a href="#">View All</a>
+
+        </div>
+
+        <div class="learning-list">
+
+            <div class="learning-item">
+
+                <div class="learning-icon">
+
+                    <i class="bi bi-journal-code"></i>
+
+                </div>
+
+                <div class="learning-content">
+
+                    <h4>Advanced Django REST Framework</h4>
+
+                    <p>Master APIs, Authentication & Permissions.</p>
+
+                </div>
+
+                <button class="learning-btn">
+
+                    Start
+
+                </button>
+
+            </div>
+
+            <div class="learning-item">
+
+                <div class="learning-icon">
+
+                    <i class="bi bi-box"></i>
+
+                </div>
+
+                <div class="learning-content">
+
+                    <h4>Docker Essentials</h4>
+
+                    <p>Deploy modern web applications with Docker.</p>
+
+                </div>
+
+                <button class="learning-btn">
+
+                    Start
+
+                </button>
+
+            </div>
+
+            <div class="learning-item">
+
+                <div class="learning-icon">
+
+                    <i class="bi bi-cloud-check"></i>
+
+                </div>
+
+                <div class="learning-content">
+
+                    <h4>AWS Cloud Basics</h4>
+
+                    <p>Learn EC2, S3 and deployment fundamentals.</p>
+
+                </div>
+
+                <button class="learning-btn">
+
+                    Start
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="companies-section">
+
+    <div class="companies-card">
+
+        <div class="companies-header">
+
+            <h3>🏢 Companies You Follow</h3>
+
+            <a href="#">View All</a>
+
+        </div>
+
+        <div class="company-list">
+
+            <div class="company-item">
+
+                <img src="{% static 'images/company/google.svg' %}" alt="Google">
+
+                <div class="company-info">
+
+                    <h4>Google</h4>
+
+                    <p>5 New Jobs Available</p>
+
+                </div>
+
+                <button>View</button>
+
+            </div>
+
+            <div class="company-item">
+
+                <img src="{% static 'images/company/microsoft.svg' %}" alt="Microsoft">
+
+                <div class="company-info">
+
+                    <h4>Microsoft</h4>
+
+                    <p>2 New Jobs Available</p>
+
+                </div>
+
+                <button>View</button>
+
+            </div>
+
+            <div class="company-item">
+
+                <img src="{% static 'images/company/amazon.svg' %}" alt="Amazon">
+
+                <div class="company-info">
+
+                    <h4>Amazon</h4>
+
+                    <p>8 New Jobs Available</p>
+
+                </div>
+
+                <button>View</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="{% static 'js/candidate/candidate.js' %}"></script>
+
+{% endblock %}

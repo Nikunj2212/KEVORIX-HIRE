@@ -1,0 +1,76 @@
+/*=====================================
+PREMIUM REVEAL
+=====================================*/
+
+.reveal{
+
+    opacity:0;
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+
+}
+
+/* Bottom */
+
+.reveal-up{
+
+    transform:translateY(70px);
+
+}
+
+/* Left */
+
+.reveal-left{
+
+    transform:translateX(-70px);
+
+}
+
+/* Right */
+
+.reveal-right{
+
+    transform:translateX(70px);
+
+}
+
+/* Scale */
+
+.reveal-scale{
+
+    transform:scale(.92);
+
+}
+
+/* Active */
+
+.reveal.show{
+
+    opacity:1;
+
+    transform:none;
+
+}
+@keyframes float{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}

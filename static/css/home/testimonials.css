@@ -1,0 +1,282 @@
+/* =====================================
+   TESTIMONIALS
+===================================== */
+
+.testimonials{
+
+    padding:120px 0;
+
+    position:relative;
+
+}
+
+.testimonial-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+    margin-top:70px;
+
+}
+
+/* =====================================
+   CARD
+===================================== */
+
+.testimonial-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow-lg);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    min-height:380px;
+
+    padding:38px;
+
+}
+
+.testimonial-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 30px 80px rgba(79,70,229,.15);
+
+}
+
+.testimonial-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:28px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(79,70,229,.20),
+        transparent,
+        rgba(6,182,212,.15)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+/* =====================================
+   RATING
+===================================== */
+
+.testimonial-rating{
+
+    font-size:1.15rem;
+
+    color:#FBBF24;
+
+    margin-bottom:28px;
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+/* =====================================
+   TEXT
+===================================== */
+
+.testimonial-text{
+
+    color:var(--text-light);
+
+    line-height:1.9;
+
+    font-size:1rem;
+
+    margin-bottom:45px;
+
+    font-style:italic;
+
+    flex:1;
+
+}
+
+/* =====================================
+   USER
+===================================== */
+
+.testimonial-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:auto;
+
+}
+
+/* =====================================
+   AVATAR
+===================================== */
+
+.avatar{
+
+    width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 30px rgba(79,70,229,.25);
+
+}
+
+.avatar img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.avatar span{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:100%;
+    height:100%;
+
+    color:#fff;
+
+    font-size:32px !important;
+
+    font-weight:700 !important;
+
+    font-family:var(--font-heading);
+
+    text-transform:uppercase;
+
+    line-height:1;
+
+}
+
+/* =====================================
+   NAME
+===================================== */
+
+.testimonial-user h4{
+
+    margin-bottom:6px;
+
+    color:var(--text);
+
+    font-size:1.1rem;
+
+}
+
+.testimonial-user h4 + span{
+
+    color:var(--text-light);
+
+    font-size:.95rem;
+
+}
+/* =====================================
+   VERIFIED
+===================================== */
+
+.verified-user{
+
+    margin-top:8px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:5px 12px;
+
+    border-radius:999px;
+
+    background:rgba(34,197,94,.10);
+
+    color:var(--success);
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+}
+
+/* =====================================
+   LIGHT MODE
+===================================== */
+
+html[data-theme="light"] .testimonial-card{
+
+    box-shadow:0 20px 60px rgba(15,23,42,.08);
+
+}
+
+html[data-theme="light"] .testimonial-card:hover{
+
+    box-shadow:0 30px 70px rgba(79,70,229,.12);
+
+}

@@ -1,11 +1,1333 @@
 {% extends "base/base.html" %}
 
+{% load static %}
+
 {% block title %}
 Home | KEVORIX Hire
 {% endblock %}
 
 {% block content %}
 
-<h1>Welcome to KEVORIX Hire 🚀</h1>
+<!-- =====================================
+     HERO SECTION
+===================================== -->
 
+<section id="home" class="hero">
+
+    <div class="container hero-container">
+
+        <!-- LEFT -->
+        <div class="hero-left reveal reveal-left">
+
+            <div class="hero-badge">
+                ✨ AI Powered Hiring Platform
+            </div>
+
+            <h1 class="hero-title">
+                Hire Smarter.
+                <br>
+                Build Better Teams.
+            </h1>
+
+            <p class="hero-subtitle">
+                AI-powered hiring platform with Resume Analysis,
+                ATS Score, Smart Job Matching and Career Growth —
+                all in one place.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#" class="btn btn-primary">
+                    Get Started
+                </a>
+
+                <a href="#" class="btn btn-secondary">
+                    ▶ Watch Demo
+                </a>
+
+            </div>
+
+            <div class="hero-trust">
+
+                ⭐⭐⭐⭐⭐
+
+                <span>
+                    Trusted by Companies & Professionals
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="hero-right reveal reveal-right">
+
+            <div class="resume-card">
+
+                <h3>Resume Score</h3>
+
+                <div class="score">
+                    98%
+                </div>
+
+                <ul>
+
+                    <li>✅ ATS Friendly</li>
+
+                    <li>🤖 AI Suggestions</li>
+
+                    <li>💼 247 Jobs Matched</li>
+
+                    <li>⚡ AI Resume Analysis</li>
+
+                </ul>
+
+                <div class="progress-box">
+
+                    <div class="progress-head">
+
+                        <span>Overall Performance</span>
+
+                        <span>98%</span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     TRUSTED COMPANIES
+===================================== -->
+
+<section class="trusted-companies">
+
+    <div class="container">
+
+        <p class="trusted-title">
+            Trusted by innovative companies
+        </p>
+
+        <div class="company-strip">
+
+            <div class="company-chip">TechNova</div>
+
+            <div class="company-chip">CodeSphere</div>
+
+            <div class="company-chip">FutureLabs</div>
+
+            <div class="company-chip">CloudNest</div>
+
+            <div class="company-chip">NextGen AI</div>
+
+            <div class="company-chip">DevWorks</div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     AI FEATURES
+===================================== -->
+
+<section id="features" class="features reveal">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-badge">
+                🚀 Powerful Features
+            </span>
+
+            <h2 class="section-title">
+                Why Choose KEVORIX?
+            </h2>
+
+            <p class="section-subtitle">
+                Everything you need to build your career and hire smarter —
+                powered by Artificial Intelligence.
+            </p>
+
+        </div>
+
+        <div class="features-grid">
+
+            <div class="feature-card reveal reveal-up">
+
+                <div class="feature-icon">🤖</div>
+
+                <h3>AI Resume Analysis</h3>
+
+                <p>
+                    Get detailed AI feedback on your resume with instant improvement suggestions.
+                </p>
+
+            </div>
+
+            <div class="feature-card reveal reveal-up">
+
+                <div class="feature-icon">📊</div>
+
+                <h3>ATS Resume Score</h3>
+
+                <p>
+                    Know how ATS-friendly your resume is before applying.
+                </p>
+
+            </div>
+
+            <div class="feature-card reveal reveal-up">
+
+                <div class="feature-icon">💼</div>
+
+                <h3>Smart Job Matching</h3>
+
+                <p>
+                    AI recommends the best jobs based on your skills and profile.
+                </p>
+
+            </div>
+
+            <div class="feature-card reveal reveal-up">
+
+                <div class="feature-icon">🧠</div>
+
+                <h3>AI Skill Suggestions</h3>
+
+                <p>
+                    Discover which skills will increase your hiring chances.
+                </p>
+
+            </div>
+
+            <div class="feature-card reveal reveal-up">
+
+                <div class="feature-icon">📄</div>
+
+                <h3>Resume Builder</h3>
+
+                <p>
+                    Build professional ATS-friendly resumes in just a few minutes.
+                </p>
+
+            </div>
+
+            <div class="feature-card reveal reveal-up">
+
+                <div class="feature-icon">⚡</div>
+
+                <h3>One Click Apply</h3>
+
+                <p>
+                    Apply to multiple jobs quickly with a single click.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     RESUME BUILDER PREVIEW
+===================================== -->
+
+<section id="resume-builder" class="resume-preview">
+
+    <div class="container resume-container">
+
+        <!-- LEFT -->
+
+        <div class="resume-left reveal reveal-left">
+
+            <div class="section-badge">
+                📄 AI Resume Builder
+            </div>
+
+            <h2 class="section-title">
+                Build ATS-Friendly Resume
+                <br>
+                In Minutes.
+            </h2>
+
+            <p class="section-subtitle">
+                Create professional resumes with AI assistance,
+                ATS optimization and multiple premium templates
+                designed to increase your interview chances.
+            </p>
+
+            <div class="resume-features">
+
+                <div class="feature-item">
+                    ✅ ATS Optimized Resume
+                </div>
+
+                <div class="feature-item">
+                    🤖 AI Resume Suggestions
+                </div>
+
+                <div class="feature-item">
+                    🎨 Premium Templates
+                </div>
+
+                <div class="feature-item">
+                    📥 One Click PDF Download
+                </div>
+
+            </div>
+
+            <div class="resume-buttons">
+
+                <a href="#" class="btn btn-primary">
+                    Create Resume
+                </a>
+
+                <a href="#" class="btn btn-secondary">
+                    View Templates
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="resume-right reveal reveal-right">
+
+            <div class="resume-preview-card">
+
+                <div class="resume-status">
+
+                    ✔ ATS Verified
+
+                </div>
+
+                <div class="resume-header">
+
+                    <div class="resume-avatar">
+                        JA
+                    </div>
+
+                    <div>
+
+                        <h3>John Anderson</h3>
+
+                        <span>Software Engineer</span>
+
+                    </div>
+
+                </div>
+
+                <div class="resume-divider"></div>
+
+                <div class="resume-section">
+
+                    <h4>Experience</h4>
+
+                    <p>5+ Years Full Stack Development</p>
+
+                </div>
+
+                <div class="resume-section">
+
+                    <h4>Skills</h4>
+
+                    <div class="skill-tags">
+
+                        <span>Python</span>
+
+                        <span>Django</span>
+
+                        <span>React</span>
+
+                        <span>AI</span>
+
+                    </div>
+
+                </div>
+
+                <div class="resume-section">
+
+                    <h4>Education</h4>
+
+                    <p>Master of Computer Applications</p>
+
+                </div>
+
+                <div class="resume-score">
+
+                    <span>ATS Score</span>
+
+                    <strong>98%</strong>
+
+                </div>
+
+                <div class="resume-score-text">
+
+                    Excellent Resume
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"></div>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     AI RESUME ANALYSIS
+===================================== -->
+
+<section  id="analysis" class="resume-analysis">
+
+    <div class="container analysis-container">
+
+        <!-- LEFT -->
+
+        <div class="analysis-left reveal reveal-left">
+
+            <div class="section-badge">
+                🤖 AI Resume Analysis
+            </div>
+
+            <h2 class="section-title">
+                Get Instant AI Feedback
+                <br>
+                On Your Resume.
+            </h2>
+
+            <p class="section-subtitle">
+
+                Upload your resume and receive detailed AI-powered
+                suggestions to improve ATS score, skills,
+                formatting and overall hiring chances.
+
+            </p>
+
+            <div class="analysis-list">
+
+                <div class="analysis-item">
+                    ✅ ATS Score Analysis
+                </div>
+
+                <div class="analysis-item">
+                    🤖 AI Improvement Suggestions
+                </div>
+
+                <div class="analysis-item">
+                    📈 Resume Strength Report
+                </div>
+
+                <div class="analysis-item">
+                    🎯 Skill Gap Detection
+                </div>
+
+            </div>
+
+            <div class="resume-buttons">
+
+                <a href="#" class="btn btn-primary">
+                    Analyze Resume
+                </a>
+
+                <a href="#" class="btn btn-secondary">
+                    Learn More
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="analysis-right reveal reveal-right">
+
+            <div class="analysis-card">
+
+                <div class="analysis-header">
+
+                    <h3>AI Analysis Report</h3>
+
+                    <span>Completed Successfully</span>
+
+                </div>
+
+                <div class="analysis-score">
+
+                    <span>ATS Score</span>
+
+                    <strong>92%</strong>
+
+                </div>
+
+                <div class="analysis-progress">
+
+                    <div class="analysis-fill"></div>
+
+                </div>
+
+                <div class="analysis-result">
+
+                    <div>✅ Resume Format Excellent</div>
+
+                    <div>⚠ Add Leadership Skills</div>
+
+                    <div>⚠ Improve Summary</div>
+
+                    <div>✅ Skills Match Industry</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     AI JOB MATCHING
+===================================== -->
+
+<section id="jobs" class="job-matching">
+
+    <div class="container matching-container">
+
+        <!-- LEFT CARD -->
+
+        <div class="matching-left reveal reveal-left">
+
+            <div class="job-card">
+
+                <div class="match-score">
+                    🔥 98% Match
+                </div>
+
+                <h3>Senior Python Developer</h3>
+
+                <p>KEVORIX Technologies</p>
+
+                <ul>
+
+                    <li>📍 Ahmedabad</li>
+
+                    <li>💰 ₹12–18 LPA</li>
+
+                    <li>💼 Full Time</li>
+
+                    <li>⚡ Remote Friendly</li>
+
+                </ul>
+
+                <div class="job-tags">
+
+                    <span>Python</span>
+
+                    <span>Django</span>
+
+                    <span>Remote</span>
+
+                </div>
+
+                <a href="#" class="btn btn-primary">
+                    Apply Now
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="matching-right reveal reveal-right">
+
+            <div class="section-badge">
+                💼 AI Job Matching
+            </div>
+
+            <h2 class="section-title">
+                Find Jobs
+                <br>
+                That Actually Fit You.
+            </h2>
+
+            <p class="section-subtitle">
+
+                Our AI analyzes your resume, skills and experience
+                to recommend the best matching opportunities.
+
+            </p>
+
+            <div class="analysis-list">
+
+                <div class="analysis-item">
+                    🎯 Personalized Job Recommendations
+                </div>
+
+                <div class="analysis-item">
+                    🤖 AI Match Percentage
+                </div>
+
+                <div class="analysis-item">
+                    ⚡ One Click Apply
+                </div>
+
+                <div class="analysis-item">
+                    📈 Career Growth Suggestions
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     STATISTICS
+===================================== -->
+
+<section class="statistics">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-badge">
+                📈 Trusted Worldwide
+            </div>
+
+            <h2 class="section-title">
+                Numbers That Speak For
+                Themselves
+            </h2>
+
+            <p class="section-subtitle">
+
+                Trusted by professionals and companies across the world.
+                Our AI-powered platform continues to help candidates
+                build better careers every single day.
+
+            </p>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <!-- Card 1 -->
+
+            <div class="stat-card reveal reveal-scale">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                </div>
+
+                <h3 class="counter" data-target="50000">0</h3>
+
+                <p>AI Resumes Created</p>
+
+            </div>
+
+            <!-- Card 2 -->
+
+            <div class="stat-card reveal reveal-scale">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                </div>
+
+                <h3 class="counter" data-target="12000">0</h3>
+
+                <p>Jobs Posted</p>
+
+            </div>
+
+            <!-- Card 3 -->
+
+            <div class="stat-card reveal reveal-scale">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+                <h3 class="counter" data-target="800">0</h3>
+
+                <p>Hiring Companies</p>
+
+            </div>
+
+            <!-- Card 4 -->
+
+            <div class="stat-card reveal reveal-scale">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+                <h3 class="counter" data-target="96">0</h3>
+
+                <p>Hiring Success</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     HOW IT WORKS
+===================================== -->
+
+<section class="how-it-works">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-badge">
+                🚀 Simple Process
+            </div>
+
+            <h2 class="section-title">
+
+                Your Career Journey
+                <br>
+
+                Starts Here.
+
+            </h2>
+
+            <p class="section-subtitle">
+
+                From creating your profile to getting hired,
+                KEVORIX guides you through every step using AI.
+
+            </p>
+
+        </div>
+
+        <div class="steps-grid">
+
+            <div class="step-card reveal reveal-up">
+
+                <div class="step-icon">
+                    👤
+                </div>
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>Create Your AI Profile</h3>
+
+                <p>
+                    Sign up and build your professional profile.
+                </p>
+
+            </div>
+
+            <div class="step-card reveal reveal-up">
+
+                <div class="step-icon">
+                    📄
+                </div>
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <h3>Build or Upload Resume</h3>
+
+                <p>
+                    Upload or create your ATS-friendly resume.
+                </p>
+
+            </div>
+
+            <div class="step-card reveal reveal-up">
+
+                <div class="step-icon">
+                    🤖
+                </div>
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>Get AI Resume Analysis</h3>
+
+                <p>
+                    Receive AI suggestions and improve your resume.
+                </p>
+
+            </div>
+
+            <div class="step-card reveal reveal-up">
+
+                <div class="step-icon">
+                    💼
+                </div>
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>Apply To Perfect Jobs</h3>
+
+                <p>
+                    Discover matching jobs and apply with confidence.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     TESTIMONIALS
+===================================== -->
+
+<section class="testimonials">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-badge">
+                💬 Success Stories
+            </div>
+
+            <h2 class="section-title">
+                Trusted by Professionals
+                Worldwide
+            </h2>
+
+            <p class="section-subtitle">
+                Thousands of candidates and recruiters trust
+                KEVORIX to hire smarter and grow faster.
+            </p>
+
+        </div>
+
+        <div class="testimonial-grid">
+
+            <div class="testimonial-card reveal reveal-up">
+
+                <div class="testimonial-rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                </div>
+
+                <p class="testimonial-text">
+                    KEVORIX AI improved my resume score from 72% to 96%.
+                    in one week I started receiving interview calls.
+                </p>
+
+                <div class="testimonial-user">
+
+                    <div class="avatar">
+
+                        <!-- Future Profile Image -->
+                        <!-- <img src="{% static 'images/users/user1.jpg' %}" alt="Nikunj Panchal"> -->
+
+                        <span>N</span>
+
+                    </div>
+
+                    <div>
+
+                        <h4>Nikunj Panchal</h4>
+
+                        <span>Software Engineer • KEVORIX User</span>
+
+                        <div class="verified-user">
+
+                            ✔ Verified User
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="testimonial-card reveal reveal-up">
+
+                <div class="testimonial-rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                </div>
+
+                <p class="testimonial-text">
+                    The AI suggestions were incredibly accurate.
+                    Creating an ATS-friendly resume became effortless.
+                </p>
+
+                <div class="testimonial-user">
+
+                    <div class="avatar">
+
+                        <!-- <img src="{% static 'images/users/user2.jpg' %}" alt="Bansari Panchal"> -->
+
+                        <span>B</span>
+
+                    </div>
+
+                    <div>
+
+                        <h4>Bansari Panchal</h4>
+
+                        <span>Python Developer • KEVORIX User</span>
+
+                        <div class="verified-user">
+
+                            ✔ Verified User
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="testimonial-card reveal reveal-up">
+
+                <div class="testimonial-rating">
+
+                    ⭐⭐⭐⭐⭐
+
+                </div>
+
+                <p class="testimonial-text">
+                    Our recruitment team reduced hiring time by almost 40%
+                    using AI-powered candidate matching.
+                </p>
+
+                <div class="testimonial-user">
+
+                    <div class="avatar">
+
+                        <!-- <img src="{% static 'images/users/user3.jpg' %}" alt="Riya Patel"> -->
+
+                        <span>R</span>
+
+                    </div>
+
+                    <div>
+
+                        <h4>Riya Patel</h4>
+
+                        <span>HR Manager • ABC Technologies</span>
+
+                        <div class="verified-user">
+
+                            ✔ Verified User
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     PRICING
+===================================== -->
+
+<section id="pricing" class="pricing">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-badge">
+                💳 Pricing Plans
+            </div>
+
+            <h2 class="section-title">
+                Simple Pricing For
+                Growing Teams
+            </h2>
+
+            <p class="section-subtitle">
+                Candidates use KEVORIX for free.
+                Recruiters choose the plan that fits their hiring needs.
+            </p>
+
+        </div>
+
+        <div class="pricing-grid">
+
+            <!-- Candidate -->
+
+            <div class="pricing-card reveal reveal-left">
+
+                <div class="plan-badge free">
+                    Free Forever
+                </div>
+
+                <h3>Candidate</h3>
+
+                <div class="price">
+                    Free
+                    <span>Forever</span>
+                </div>
+
+                <ul>
+
+                    <li>✅ Resume Builder</li>
+                    <li>✅ AI Resume Analysis</li>
+                    <li>✅ AI Job Matching</li>
+                    <li>✅ Apply to Jobs</li>
+                    <li>✅ Career Dashboard</li>
+
+                </ul>
+
+                <a href="#" class="btn btn-secondary">
+                    Get Started
+                </a>
+
+                <div class="plan-note">
+
+                    No Credit Card Required
+
+                </div>
+
+            </div>
+
+            <!-- Recruiter -->
+
+            <div class="pricing-card featured reveal reveal-right">
+
+                <div class="popular-tag">
+                    ⭐ Most Popular
+                </div>
+
+                <h3>Recruiter Pro</h3>
+
+                <div class="price">
+                    ₹4,999
+                    <span>/month</span>
+                </div>
+
+                <ul>
+
+                    <li>✅ Unlimited Job Posts</li>
+                    <li>✅ AI Candidate Matching</li>
+                    <li>✅ Resume Screening</li>
+                    <li>✅ Analytics Dashboard</li>
+                    <li>✅ Priority Support</li>
+
+                </ul>
+
+                <a href="#" class="btn btn-primary">
+                    Start Hiring
+                </a>
+
+                <div class="plan-note">
+
+                    7-Day Free Trial
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     FAQ
+===================================== -->
+
+<section id="faq" class="faq">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-badge">
+                ❓ Frequently Asked Questions
+            </div>
+
+            <h2 class="section-title">
+                Got Questions?
+                <br>
+                We've Got Answers.
+            </h2>
+
+            <p class="section-subtitle">
+                Everything you need to know before getting started with KEVORIX.
+            </p>
+
+        </div>
+
+        <div class="faq-list">
+
+            <!-- FAQ 1 -->
+
+            <div class="faq-item reveal reveal-up active">
+
+                <div class="faq-question">
+
+                    <h3>Is KEVORIX free for job seekers?</h3>
+
+                    <span class="faq-icon">+</span>
+
+                </div>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. Candidates can use AI Resume Builder,
+                        AI Resume Analysis, AI Job Matching,
+                        ATS Resume Score and Job Applications
+                        completely free of cost.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 2 -->
+
+            <div class="faq-item reveal reveal-up">
+
+                <div class="faq-question">
+
+                    <h3>How does AI Resume Analysis work?</h3>
+
+                    <span class="faq-icon">+</span>
+
+                </div>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Our AI analyzes your resume, identifies weak
+                        sections, improves ATS compatibility,
+                        recommends better keywords and provides
+                        personalized suggestions instantly.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 3 -->
+
+            <div class="faq-item reveal reveal-up">
+
+                <div class="faq-question">
+
+                    <h3>Can companies find candidates using AI?</h3>
+
+                    <span class="faq-icon">+</span>
+
+                </div>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. Recruiters can search candidates using
+                        AI-powered matching, smart resume screening,
+                        advanced filters and hiring analytics.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 4 -->
+
+            <div class="faq-item reveal reveal-up">
+
+                <div class="faq-question">
+
+                    <h3>Do I need coding knowledge to create a resume?</h3>
+
+                    <span class="faq-icon">+</span>
+
+                </div>
+
+                <div class="faq-answer">
+
+                    <p>
+                        No. KEVORIX Resume Builder is designed for
+                        beginners. Simply enter your information and
+                        our AI automatically creates a professional,
+                        ATS-friendly resume.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 5 -->
+
+            <div class="faq-item reveal reveal-up">
+
+                <div class="faq-question">
+
+                    <h3>Can I download my resume as PDF?</h3>
+
+                    <span class="faq-icon">+</span>
+
+                </div>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. You can download your resume instantly
+                        in professional ATS-friendly PDF format with
+                        multiple modern templates.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- FAQ 6 -->
+
+            <div class="faq-item reveal reveal-up">
+
+                <div class="faq-question">
+
+                    <h3>Is my personal data secure?</h3>
+
+                    <span class="faq-icon">+</span>
+
+                </div>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Absolutely. Your personal information and
+                        resumes are securely stored using industry
+                        standard encryption and privacy practices.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     FINAL CTA
+===================================== -->
+
+<section id="resources" class="final-cta">
+
+    <div class="container">
+
+        <div class="cta-box reveal reveal-scale">
+
+            <div class="section-badge">
+                🚀 Start Today
+            </div>
+
+            <h2>
+                Ready to Build Your Dream Career
+                <br>
+                With AI?
+            </h2>
+
+            <p>
+                Join thousands of professionals and companies using
+                KEVORIX to build ATS-friendly resumes, discover
+                AI-powered job opportunities and hire smarter than ever.
+            </p>
+
+            <!-- Small Stats -->
+
+            <div class="cta-stats">
+
+                <div>
+                    <strong>50K+</strong>
+                    <span>Users</span>
+                </div>
+
+                <div>
+                    <strong>12K+</strong>
+                    <span>Jobs</span>
+                </div>
+
+                <div>
+                    <strong>800+</strong>
+                    <span>Companies</span>
+                </div>
+
+            </div>
+
+            <div class="cta-buttons">
+
+                <a href="#" class="btn btn-primary">
+                    Create Free Account
+                </a>
+
+                <a href="#" class="btn btn-secondary">
+                    Explore Features
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 {% endblock %}

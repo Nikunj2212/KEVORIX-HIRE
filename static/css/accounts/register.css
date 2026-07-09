@@ -1,0 +1,383 @@
+/* =====================================
+   REGISTER PAGE
+===================================== */
+
+.auth-logo{
+
+    width:170px;
+
+    margin:0 auto 28px;
+
+    display:block;
+
+    transition:var(--transition);
+
+}
+
+.auth-logo:hover{
+
+    transform:scale(1.03);
+
+}
+
+/* =====================================
+   AUTH CARD
+===================================== */
+
+.auth-card{
+
+    animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================
+   TITLE
+===================================== */
+
+.auth-header h1{
+
+    font-size:2rem;
+
+    margin-bottom:10px;
+
+    color:var(--text);
+
+}
+
+.auth-header p{
+
+    max-width:360px;
+
+    margin:auto;
+
+}
+
+/* =====================================
+   INPUT ICON EFFECT
+===================================== */
+
+.form-control{
+
+    font-size:15px;
+
+}
+
+.form-control::placeholder{
+
+    color:rgba(148,163,184,.8);
+
+}
+
+.form-control:hover{
+
+    border-color:rgba(79,70,229,.45);
+
+}
+
+/* =====================================
+   PASSWORD ICON
+===================================== */
+
+.password-toggle{
+
+    transition:var(--transition);
+
+}
+
+.password-toggle:hover{
+
+    transform:translateY(-50%) scale(1.15);
+
+}
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.auth-btn{
+
+    height:56px;
+
+    font-size:1rem;
+
+    border-radius:14px;
+
+}
+
+/* =====================================
+   LINKS
+===================================== */
+
+.auth-footer{
+
+    font-size:.95rem;
+
+}
+
+.auth-footer a{
+
+    text-decoration:none;
+
+}
+
+.auth-footer a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* =====================================
+   CHECKBOX
+===================================== */
+
+.checkbox-group a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+}
+
+.checkbox-group a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* =====================================
+   LIGHT MODE
+===================================== */
+
+html[data-theme="light"] .auth-card{
+
+    background:rgba(255,255,255,.94);
+
+    backdrop-filter:blur(18px);
+
+}
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+html[data-theme="dark"] .auth-card{
+
+    background:rgba(19,27,45,.92);
+
+    backdrop-filter:blur(18px);
+
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:768px){
+
+    .auth-logo{
+
+        width:145px;
+
+    }
+
+    .auth-header h1{
+
+        font-size:1.7rem;
+
+    }
+
+}
+/* =====================================
+   SOCIAL LOGIN
+===================================== */
+
+.social-auth{
+
+    margin-bottom:28px;
+
+}
+
+.google-btn{
+
+    width:100%;
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:14px;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.google-btn:hover{
+
+    transform:translateY(-2px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 12px 30px rgba(79,70,229,.10);
+
+}
+
+.google-btn img{
+
+    width:20px;
+
+    height:20px;
+
+    flex-shrink:0;
+
+    object-fit:contain;
+
+}
+
+/* =====================================
+   DIVIDER
+===================================== */
+
+.auth-divider{
+
+    position:relative;
+
+    margin:32px 0;
+
+    text-align:center;
+
+}
+
+.auth-divider::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:50%;
+
+    left:0;
+
+    width:100%;
+
+    height:1px;
+
+    background:var(--border);
+
+}
+
+.auth-divider span{
+
+    position:relative;
+
+    padding:0 18px;
+
+    background:var(--surface);
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+}
+.auth-shape{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:var(--gradient-primary);
+
+    opacity:.15;
+
+    animation:floatShape 8s ease-in-out infinite;
+
+}
+
+.shape-1{
+
+    width:90px;
+
+    height:90px;
+
+    left:8%;
+
+    top:18%;
+
+}
+
+.shape-2{
+
+    width:70px;
+
+    height:70px;
+
+    right:10%;
+
+    top:22%;
+
+    animation-delay:2s;
+
+}
+
+.shape-3{
+
+    width:120px;
+
+    height:120px;
+
+    right:12%;
+
+    bottom:10%;
+
+    animation-delay:4s;
+
+}
+
+@keyframes floatShape{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-20px);
+
+    }
+
+}

@@ -1,0 +1,258 @@
+/* =====================================
+   RESUME ANALYSIS
+===================================== */
+
+.resume-analysis{
+
+    position:relative;
+
+}
+
+.analysis-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:90px;
+
+    align-items:center;
+
+}
+
+/* =====================================
+   LEFT
+===================================== */
+
+.analysis-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+.analysis-list{
+
+    display:grid;
+
+    gap:18px;
+
+}
+
+.analysis-item{
+
+    font-size:1.05rem;
+
+    color:var(--text-light);
+
+    font-weight:500;
+
+}
+
+/* =====================================
+   RIGHT
+===================================== */
+
+.analysis-right{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+/* =====================================
+   CARD
+===================================== */
+
+.analysis-card{
+
+    width:430px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow-lg);
+
+    transition:var(--transition);
+
+}
+
+.analysis-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 30px 80px rgba(79,70,229,.18);
+
+}
+
+/* Premium Border */
+
+.analysis-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:28px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(79,70,229,.25),
+        transparent,
+        rgba(6,182,212,.18)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+.analysis-header{
+
+    margin-bottom:30px;
+
+}
+
+.analysis-header h3{
+
+    font-size:1.8rem;
+
+    margin-bottom:8px;
+
+    color:var(--text);
+
+}
+
+.analysis-header span{
+
+    color:#22C55E;
+
+    font-weight:600;
+
+}
+
+/* =====================================
+   SCORE
+===================================== */
+
+.analysis-score{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+.analysis-score span{
+
+    color:var(--text-light);
+
+}
+
+.analysis-score strong{
+
+    font-size:3rem;
+
+    color:var(--primary);
+
+}
+
+/* =====================================
+   PROGRESS
+===================================== */
+
+.analysis-progress{
+
+    height:12px;
+
+    border-radius:999px;
+
+    background:var(--border);
+
+    overflow:hidden;
+
+    margin-bottom:35px;
+
+}
+
+.analysis-fill{
+
+    width:92%;
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:var(--gradient-primary);
+
+}
+
+/* =====================================
+   RESULT
+===================================== */
+
+.analysis-result{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.analysis-result div{
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    background:rgba(79,70,229,.05);
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+    transition:var(--transition);
+
+}
+
+.analysis-result div:hover{
+
+    transform:translateX(8px);
+
+    background:rgba(79,70,229,.08);
+
+}

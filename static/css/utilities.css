@@ -1,42 +1,131 @@
+/* =====================================
+   CONTAINER
+===================================== */
+
 .container{
-
-    width:min(1320px,92%);
-    margin-inline:auto;
-
+    width: min(var(--container-width), 92%);
+    margin-inline: auto;
 }
+
+/* =====================================
+   SECTIONS
+===================================== */
 
 .section{
-
-    padding:90px 0;
-
+    padding: var(--section-padding) 0;
 }
 
-.text-center{
-
-    text-align:center;
-
-}
+/* =====================================
+   FLEX
+===================================== */
 
 .d-flex{
-
-    display:flex;
-
+    display: flex;
 }
 
 .align-center{
-
-    align-items:center;
-
+    align-items: center;
 }
 
 .justify-between{
+    justify-content: space-between;
+}
 
-    justify-content:space-between;
+.justify-center{
+    justify-content: center;
+}
+
+/* =====================================
+   GRID
+===================================== */
+
+.grid{
+    display: grid;
+}
+
+/* =====================================
+   TEXT
+===================================== */
+
+.text-center{
+    text-align: center;
+}
+/* =====================================
+   BUTTONS
+===================================== */
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 24px;
+
+    border-radius:var(--radius-md);
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+    cursor:pointer;
 
 }
 
-.hidden{
+.btn-primary{
 
-    display:none;
+    background:var(--gradient-primary);
+
+    color:#fff;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-outline{
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+}
+/* =====================================
+   BADGES
+===================================== */
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+}
+/*=====================================
+GLOBAL SECTION SPACING
+=====================================*/
+
+section{
+
+    padding:50px 0;
 
 }

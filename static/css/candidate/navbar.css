@@ -1,0 +1,531 @@
+.candidate-navbar{
+
+    height:80px;
+
+    background:var(--surface);
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+/* =====================================
+   THEME TOGGLE
+===================================== */
+
+.theme-toggle{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--surface-2);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    font-size:1.2rem;
+
+    border:1px solid var(--border);
+
+}
+
+.theme-toggle:hover{
+
+    background:var(--primary-soft);
+
+    color:var(--primary);
+
+    transform:rotate(20deg);
+
+}
+/* =====================================
+   SEARCH
+===================================== */
+
+/* =====================================
+   SEARCH BOX
+===================================== */
+
+.search-box{
+
+    width:420px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 18px;
+
+    background:var(--surface-2);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    transition:var(--transition);
+
+}
+
+.search-box:hover,
+.search-box:focus-within{
+
+    border-color:var(--primary);
+
+}
+
+.search-box i{
+
+    color:var(--text-light);
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:var(--text);
+
+    font-size:.95rem;
+
+}
+
+.search-box input::placeholder{
+
+    color:var(--text-muted);
+
+}
+
+/* =====================================
+   NAVBAR RIGHT
+===================================== */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+/* =====================================
+   ICON BUTTONS
+===================================== */
+
+.nav-icon{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--surface-2);
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+    position:relative;
+
+}
+
+.nav-icon:hover{
+
+    background:var(--primary-soft);
+
+    color:var(--primary);
+
+    transform:translateY(-2px);
+
+}
+
+.badge{
+
+    position:absolute;
+
+    top:-2px;
+
+    right:-2px;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:var(--danger);
+
+    color:#fff;
+
+    font-size:.65rem;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* =====================================
+   USER
+===================================== */
+
+.navbar-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:8px 12px;
+
+    border-radius:16px;
+
+    border:1px solid var(--border);
+
+    background:var(--surface-2);
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.navbar-user:hover{
+
+    background:var(--primary-soft);
+
+}
+
+.navbar-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:var(--gradient-primary);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+}
+
+.navbar-user-info h4{
+
+    margin:0;
+
+    font-size:.9rem;
+
+    color:var(--text);
+
+}
+
+.navbar-user-info small{
+
+    color:var(--text-light);
+
+}
+/* =====================================
+   NOTIFICATION
+===================================== */
+
+.notification-wrapper{
+
+    position:relative;
+
+}
+
+.notification-dropdown{
+
+    position:absolute;
+
+    top:60px;
+
+    right:0;
+
+    width:360px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-lg);
+
+    display:none;
+
+    overflow:hidden;
+
+    z-index:999;
+
+}
+
+.notification-dropdown.show{
+
+    display:block;
+
+    animation:dropdown .25s ease;
+
+}
+
+@keyframes dropdown{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.dropdown-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.dropdown-header h4{
+
+    color:var(--text);
+
+    margin:0;
+
+}
+
+.dropdown-header a{
+
+    text-decoration:none;
+
+    color:var(--primary);
+
+    font-size:.9rem;
+
+}
+
+.notification-item{
+
+    display:flex;
+
+    gap:14px;
+
+    padding:18px;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.notification-item:hover{
+
+    background:var(--primary-soft);
+
+}
+
+.notification-item i{
+
+    font-size:22px;
+
+    color:var(--primary);
+
+}
+
+.notification-item strong{
+
+    color:var(--text);
+
+}
+
+.notification-item p{
+
+    color:var(--text-light);
+
+    margin:4px 0;
+
+}
+
+.notification-item small{
+
+    color:var(--text-muted);
+
+}
+/* =====================================
+   PROFILE DROPDOWN
+===================================== */
+
+.profile-dropdown{
+
+    position:absolute;
+
+    top:70px;
+
+    right:0;
+
+    width:250px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow-lg);
+
+    padding:10px;
+
+    display:none;
+
+    z-index:999;
+
+    animation:dropdown .25s ease;
+
+}
+
+.profile-dropdown.show{
+
+    display:block;
+
+}
+
+.profile-dropdown a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    border-radius:12px;
+
+    transition:var(--transition);
+
+}
+
+.profile-dropdown a:hover{
+
+    background:var(--primary-soft);
+
+    color:var(--primary);
+
+}
+
+.profile-dropdown i{
+
+    font-size:18px;
+
+    width:22px;
+
+    text-align:center;
+
+}
+
+.profile-dropdown hr{
+
+    border:none;
+
+    border-top:1px solid var(--border);
+
+    margin:8px 0;
+
+}
+
+.logout-link{
+
+    color:var(--danger) !important;
+
+}
+
+.logout-link:hover{
+
+    background:rgba(239,68,68,.08) !important;
+
+}
+.profile-wrapper{
+
+    position:relative;
+
+}   

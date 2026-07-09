@@ -1,0 +1,256 @@
+/* =====================================
+   HOW IT WORKS
+===================================== */
+
+.how-it-works{
+    position: relative;
+}
+
+/* =====================================
+   GRID
+===================================== */
+
+.steps-grid{
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+    margin-top:70px;
+
+}
+
+/* =====================================
+   STEP CARD
+===================================== */
+
+.step-card{
+
+    position:relative;
+
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:28px;
+
+    text-align:center;
+
+    padding:70px 30px 40px;
+    margin-top:40px;
+
+    transition:var(--transition);
+    box-shadow:var(--shadow-lg);
+
+}
+
+/* =====================================
+   CONNECTING LINE
+===================================== */
+
+.step-card:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:105px;
+    right:-30px;
+
+    width:30px;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        rgba(79,70,229,.25),
+        rgba(79,70,229,.55)
+    );
+
+    z-index:2;
+
+}
+
+/* =====================================
+   HOVER
+===================================== */
+
+.step-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 30px 80px rgba(79,70,229,.15);
+
+}
+
+/* =====================================
+   PREMIUM BORDER
+===================================== */
+
+.step-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:28px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(79,70,229,.22),
+        transparent,
+        rgba(6,182,212,.15)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+
+}
+
+/* =====================================
+   ICON
+===================================== */
+
+.step-icon{
+
+    position:absolute;
+
+    top:-35px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--gradient-primary);
+
+    color:#fff;
+    font-size:1.8rem;
+
+    box-shadow:0 15px 35px rgba(79,70,229,.25);
+
+    transition:var(--transition);
+
+}
+
+/* Hover */
+
+.step-card:hover .step-icon{
+
+    transform:translateX(-50%) rotate(10deg) scale(1.08);
+
+}
+
+/* =====================================
+   NUMBER
+===================================== */
+
+.step-number{
+
+    width:42px;
+    height:42px;
+
+    margin:0 auto 24px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(79,70,229,.08);
+
+    color:var(--primary);
+
+    font-size:.95rem;
+    font-weight:700;
+
+}
+
+/* =====================================
+   TITLE
+===================================== */
+
+.step-card h3{
+
+    font-size:1.35rem;
+
+    margin-bottom:18px;
+
+    color:var(--text);
+
+}
+
+/* =====================================
+   DESCRIPTION
+===================================== */
+
+.step-card p{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+    font-size:1rem;
+
+}
+
+/* =====================================
+   LIGHT MODE
+===================================== */
+
+html[data-theme="light"] .step-card{
+
+    box-shadow:0 20px 60px rgba(15,23,42,.08);
+
+}
+
+html[data-theme="light"] .step-card:hover{
+
+    box-shadow:0 30px 70px rgba(79,70,229,.12);
+
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media(max-width:992px){
+
+    .steps-grid{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+
+    }
+
+    .step-card{
+
+        margin-top:0;
+
+    }
+
+    .step-card:not(:last-child)::after{
+
+        display:none;
+
+    }
+
+}

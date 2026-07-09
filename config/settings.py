@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.website',
+    "apps.accounts",
+    "apps.candidate.apps.CandidateConfig",
+
 ]
 
 MIDDLEWARE = [
@@ -100,6 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# =====================================
+# Custom User Model
+# =====================================
+
+AUTH_USER_MODEL = "accounts.User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
@@ -128,3 +136,19 @@ MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ==========================
+# Email Configuration
+# ==========================
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = "kevorixtechnologies@gmail.com"
+EMAIL_HOST_PASSWORD = "jaon snnj xxxw qqly"
+
+DEFAULT_FROM_EMAIL = "KEVORIX Hire <kevorixtechnologies@gmail.com>"

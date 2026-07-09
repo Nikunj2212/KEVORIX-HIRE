@@ -1,0 +1,849 @@
+{% extends "candidate/base/candidate_base.html" %}
+
+{% load static %}
+
+{% block title %}
+My Profile | KEVORIX Hire
+{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/candidate/profile/profile.css' %}">
+
+{% endblock %}
+
+{% block candidate_content %}
+
+<!-- =====================================
+     PROFILE HERO
+===================================== -->
+
+<section class="profile-hero">
+
+    <!-- Banner -->
+
+    <div class="profile-banner"></div>
+
+    <!-- Profile Header -->
+
+    <div class="profile-header">
+
+        <div class="profile-left">
+
+            <div class="profile-avatar">
+
+               {% if profile.profile_photo %}
+
+                    <img src="{{ profile.profile_photo.url }}" alt="Profile">
+
+               {% else %}
+
+                    {{ profile.user.first_name|first|upper }}
+
+               {% endif %}
+
+            </div>
+
+            <div class="profile-info">
+
+                <h1>
+                    {% if profile.user.get_full_name %}
+                         {{ profile.user.get_full_name }}
+                    {% else %}
+                         {{ profile.user.email }}
+                    {% endif %}
+                </h1>
+
+                <p>{{ profile.headline|default:"Add your professional headline" }}</p>
+
+                <small>
+                    📍
+                    {{ profile.city|default:"City" }}
+                    {% if profile.country %}
+                         , {{ profile.country }}
+                    {% endif %}
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="profile-right">
+
+            <button class="btn-outline">
+                <i class="bi bi-pencil-square"></i>
+                Edit Profile
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     PROFILE STATS
+===================================== -->
+
+<!-- =====================================
+     PROFILE STATISTICS
+===================================== -->
+
+<section class="profile-stats">
+
+    <div class="profile-stats-grid">
+
+        <div class="profile-stat-card">
+
+            <i class="bi bi-person-check-fill"></i>
+
+            <h3>78%</h3>
+
+            <p>Profile Completion</p>
+
+        </div>
+
+        <div class="profile-stat-card">
+
+            <i class="bi bi-stars"></i>
+
+            <h3>86</h3>
+
+            <p>Resume Score</p>
+
+        </div>
+
+        <div class="profile-stat-card">
+
+            <i class="bi bi-briefcase-fill"></i>
+
+            <h3>12</h3>
+
+            <p>Applications</p>
+
+        </div>
+
+        <div class="profile-stat-card">
+
+            <i class="bi bi-bookmark-heart-fill"></i>
+
+            <h3>08</h3>
+
+            <p>Saved Jobs</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     PERSONAL INFORMATION
+===================================== -->
+
+<section class="personal-section">
+
+    <div class="section-header">
+
+        <h2>Personal Information</h2>
+
+        <button class="btn-edit">
+            <i class="bi bi-pencil-square"></i>
+            Edit
+        </button>
+
+    </div>
+
+    <div class="personal-card">
+
+        <div class="info-item">
+            <span>Full Name</span>
+            <strong>{{ profile.user.get_full_name }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Email</span>
+            <strong>{{ profile.user.email }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Phone</span>
+            <strong>{{ profile.user.phone }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Date of Birth</span>
+            <strong>{{ profile.date_of_birth|default:"Not Added" }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Gender</span>
+            <strong>{{ profile.gender|default:"Not Added" }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Nationality</span>
+            <strong>{{ profile.nationality|default:"Not Added" }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Current Role</span>
+            <strong>{{ profile.current_job_title|default:"Not Added" }}</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Location</span>
+            <strong>
+                {{ profile.city|default:"City" }}
+                {% if profile.state %}
+                    , {{ profile.state }}
+                {% endif %}
+                {% if profile.country %}
+                    , {{ profile.country }}
+                {% endif %}
+            </strong>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     ABOUT ME
+===================================== -->
+
+<section class="about-section">
+
+    <div class="section-header">
+
+        <h2>About Me</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="about-card">
+
+        <p>
+
+            Python Django Full Stack Developer with experience in building
+            scalable web applications using Django, Django REST Framework,
+            MySQL and JavaScript.
+
+            Passionate about AI-powered recruitment systems and modern
+            web technologies.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     EDUCATION
+===================================== -->
+
+<!-- =====================================
+     EDUCATION
+===================================== -->
+
+<section class="education-section">
+
+    <div class="education-header">
+
+        <h2>Education</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="education-card">
+
+        <div class="education-item">
+
+            <div class="education-icon">
+
+                <i class="bi bi-mortarboard-fill"></i>
+
+            </div>
+
+            <div class="education-content">
+
+                <h3>Master of Computer Applications (MCA)</h3>
+
+                <h4>SAL Institute of Technology & Engineering Research (GTU)</h4>
+
+                <p>2024 - 2026</p>
+
+                <span>Currently Pursuing</span>
+
+            </div>
+
+        </div>
+
+        <div class="education-item">
+
+            <div class="education-icon">
+
+                <i class="bi bi-mortarboard-fill"></i>
+
+            </div>
+
+            <div class="education-content">
+
+                <h3>Bachelor of Computer Applications (BCA)</h3>
+
+                <h4>President Institute of Computer Application (GU)</h4>
+
+                <p>2021 - 2024</p>
+
+                <span>Completed</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     EXPERIENCE
+===================================== -->
+
+<!-- =====================================
+     EXPERIENCE
+===================================== -->
+
+<section class="experience-section">
+
+    <div class="experience-header">
+
+        <h2>Experience</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="experience-card">
+
+        <div class="experience-item">
+
+            <div class="experience-icon">
+
+                <i class="bi bi-briefcase-fill"></i>
+
+            </div>
+
+            <div class="experience-content">
+
+                <h3>Python Django Developer Intern</h3>
+
+                <h4>Axis Technolabs</h4>
+
+                <p>3 Months Internship</p>
+
+                <span>Backend Development • Django • REST API</span>
+
+            </div>
+
+        </div>
+
+        <div class="experience-item">
+
+            <div class="experience-icon">
+
+                <i class="bi bi-briefcase-fill"></i>
+
+            </div>
+
+            <div class="experience-content">
+
+                <h3>Python Django Developer Intern</h3>
+
+                <h4>Elysial Global Services Pvt. Ltd.</h4>
+
+                <p>6 Months Internship</p>
+
+                <span>Full Stack Development • Django • MySQL</span>
+
+            </div>
+
+        </div>
+
+        <div class="experience-item">
+
+            <div class="experience-icon">
+
+                <i class="bi bi-briefcase-fill"></i>
+
+            </div>
+
+            <div class="experience-content">
+
+                <h3>Python Django Developer Intern</h3>
+
+                <h4>Sparks To Ideas</h4>
+
+                <p>9 Months Internship</p>
+
+                <span>Python • Django • Live Projects</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================
+     SKILLS
+===================================== -->
+
+<section class="skills-section">
+
+    <div class="skills-header">
+
+        <h2>Skills</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="skills-card">
+
+        <div class="skills-list">
+
+            <span class="skill-badge">Python</span>
+
+            <span class="skill-badge">Django</span>
+
+            <span class="skill-badge">Django REST Framework</span>
+
+            <span class="skill-badge">MySQL</span>
+
+            <span class="skill-badge">HTML5</span>
+
+            <span class="skill-badge">CSS3</span>
+
+            <span class="skill-badge">JavaScript</span>
+
+            <span class="skill-badge">Bootstrap</span>
+
+            <span class="skill-badge">Git</span>
+
+            <span class="skill-badge">GitHub</span>
+
+            <span class="skill-badge">REST API</span>
+
+            <span class="skill-badge">Problem Solving</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     PROJECTS
+===================================== -->
+
+<section class="projects-section">
+
+    <div class="projects-header">
+
+        <h2>Projects</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="projects-grid">
+
+        <div class="project-card">
+
+            <h3>KEVORIX Hire</h3>
+
+            <p>
+                AI-powered recruitment platform with Resume Builder,
+                ATS Resume Score, AI Job Matching, Company Dashboard
+                and Candidate Dashboard.
+            </p>
+
+            <div class="project-tags">
+
+                <span>Django</span>
+
+                <span>Python</span>
+
+                <span>MySQL</span>
+
+                <span>AI</span>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <h3>Luxuria Ecommerce</h3>
+
+            <p>
+                Luxury ecommerce platform with payment integration,
+                wishlist, dashboard, analytics and REST API.
+            </p>
+
+            <div class="project-tags">
+
+                <span>Django</span>
+
+                <span>REST API</span>
+
+                <span>Bootstrap</span>
+
+                <span>MySQL</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     CERTIFICATES
+===================================== -->
+
+<section class="certificates-section">
+
+    <div class="certificates-header">
+
+        <h2>Certificates</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="certificates-grid">
+
+        <div class="certificate-card">
+
+            <div class="certificate-icon">
+
+                <i class="bi bi-award-fill"></i>
+
+            </div>
+
+            <div class="certificate-content">
+
+                <h3>Python Django Internship</h3>
+
+                <p>Axis Technolabs</p>
+
+                <span>2025</span>
+
+            </div>
+
+        </div>
+
+        <div class="certificate-card">
+
+            <div class="certificate-icon">
+
+                <i class="bi bi-award-fill"></i>
+
+            </div>
+
+            <div class="certificate-content">
+
+                <h3>Python Django Internship</h3>
+
+                <p>Elysial Global Services Pvt. Ltd.</p>
+
+                <span>2025</span>
+
+            </div>
+
+        </div>
+
+        <div class="certificate-card">
+
+            <div class="certificate-icon">
+
+                <i class="bi bi-award-fill"></i>
+
+            </div>
+
+            <div class="certificate-content">
+
+                <h3>Python Django Internship</h3>
+
+                <p>Sparks To Ideas</p>
+
+                <span>2024</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     LANGUAGES
+===================================== -->
+
+<section class="languages-section">
+
+    <div class="languages-header">
+
+        <h2>Languages</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="languages-card">
+
+        <div class="language-item">
+
+            <div class="language-info">
+
+                <h3>Gujarati</h3>
+
+                <p>Native</p>
+
+            </div>
+
+            <span class="language-level expert">Expert</span>
+
+        </div>
+
+        <div class="language-item">
+
+            <div class="language-info">
+
+                <h3>Hindi</h3>
+
+                <p>Professional Working</p>
+
+            </div>
+
+            <span class="language-level advanced">Advanced</span>
+
+        </div>
+
+        <div class="language-item">
+
+            <div class="language-info">
+
+                <h3>English</h3>
+
+                <p>Professional Working</p>
+
+            </div>
+
+            <span class="language-level intermediate">Intermediate</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     SOCIAL LINKS
+===================================== -->
+
+<section class="social-section">
+
+    <div class="social-header">
+
+        <h2>Social Links</h2>
+
+        <button class="edit-link">
+
+            <i class="bi bi-pencil-square"></i>
+
+            Edit
+
+        </button>
+
+    </div>
+
+    <div class="social-card">
+
+        <div class="social-item">
+
+            <i class="bi bi-linkedin"></i>
+
+            <div class="social-info">
+
+                <h3>LinkedIn</h3>
+
+                <a href="#">linkedin.com/in/nikunjpanchal</a>
+
+            </div>
+
+        </div>
+
+        <div class="social-item">
+
+            <i class="bi bi-github"></i>
+
+            <div class="social-info">
+
+                <h3>GitHub</h3>
+
+                <a href="#">github.com/nikunjpanchal</a>
+
+            </div>
+
+        </div>
+
+        <div class="social-item">
+
+            <i class="bi bi-globe"></i>
+
+            <div class="social-info">
+
+                <h3>Portfolio</h3>
+
+                <a href="#">www.nikunjportfolio.com</a>
+
+            </div>
+
+        </div>
+
+        <div class="social-item">
+
+            <i class="bi bi-envelope-fill"></i>
+
+            <div class="social-info">
+
+                <h3>Email</h3>
+
+                <a href="#">nikunj@gmail.com</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     RESUME
+===================================== -->
+
+<section class="resume-section">
+
+    <div class="resume-header">
+
+        <h2>Resume</h2>
+
+        <a href="#" class="resume-link">
+
+            Go to My Resume
+
+            <i class="bi bi-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+    <div class="resume-card">
+
+        <div class="resume-item">
+
+            <label>Resume Status</label>
+
+            <span class="status uploaded">
+
+                Uploaded
+
+            </span>
+
+        </div>
+
+        <div class="resume-item">
+
+            <label>Resume Name</label>
+
+            <span>Nikunj_Panchal_Resume.pdf</span>
+
+        </div>
+
+        <div class="resume-item">
+
+            <label>Last Updated</label>
+
+            <span>15 July 2026</span>
+
+        </div>
+
+        <div class="resume-item">
+
+            <label>ATS Resume Score</label>
+
+            <span>86 / 100</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="{% static 'js/candidate/candidate.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "base/auth_base.html" %}
+{% load static %}
+
+{% block title %}
+Verify OTP | KEVORIX Hire
+{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'css/accounts/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/accounts/verify_otp.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+<section class="auth-page">
+
+    <div class="auth-shape shape-1"></div>
+    <div class="auth-shape shape-2"></div>
+    <div class="auth-shape shape-3"></div>
+
+    <div class="auth-container">
+
+        <div class="auth-card reveal reveal-up">
+
+            <div class="auth-header">
+
+                <img
+                    src="{% static 'images/logos/logo-dark.svg' %}"
+                    alt="KEVORIX"
+                    class="auth-logo logo-light-mode"
+                >
+
+                <img
+                    src="{% static 'images/logos/logo-white.svg' %}"
+                    alt="KEVORIX"
+                    class="auth-logo logo-dark-mode"
+                >
+
+                <h1>Verify Your Email</h1>
+
+                <p>
+                    We've sent a 6-digit verification code to
+
+                    <strong>{{ email }}</strong>
+                </p>
+
+            </div>
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+            <form method="POST" class="auth-form">
+
+                {% csrf_token %}
+
+                <div class="otp-wrapper">
+
+                    <input type="text" class="otp-box" maxlength="1">
+                    <input type="text" class="otp-box" maxlength="1">
+                    <input type="text" class="otp-box" maxlength="1">
+                    <input type="text" class="otp-box" maxlength="1">
+                    <input type="text" class="otp-box" maxlength="1">
+                    <input type="text" class="otp-box" maxlength="1">
+
+                </div>
+
+                <input type="hidden" name="otp" id="otp">
+
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-btn"
+                >
+
+                    Verify OTP
+
+                </button>
+
+            </form>
+
+            <div class="otp-info">
+
+                <span id="timer">
+
+                    OTP expires in <span id="otp-timer">05:00</span>
+
+                </span>
+
+            </div>
+
+            <div class="otp-footer">
+
+                Didn't receive the OTP?
+
+                <a
+                    href="{% url 'accounts:resend_otp' %}"
+                    id="resend-link"
+                    style="pointer-events:none;opacity:.5;">
+
+                    Resend OTP
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="{% static 'js/verify_otp.js' %}"></script>
+
+{% endblock %}

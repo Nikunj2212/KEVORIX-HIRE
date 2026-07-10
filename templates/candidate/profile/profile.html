@@ -148,10 +148,13 @@ My Profile | KEVORIX Hire
 
         <h2>Personal Information</h2>
 
-        <button class="btn-edit">
+        <a href="{% url 'candidate:personal_edit' %}" class="btn-edit">
+
             <i class="bi bi-pencil-square"></i>
+
             Edit
-        </button>
+
+        </a>
 
     </div>
 
@@ -219,13 +222,13 @@ My Profile | KEVORIX Hire
 
         <h2>About Me</h2>
 
-        <button class="edit-link">
+        <a href="{% url 'candidate:about_edit' %}" class="edit-link">
 
             <i class="bi bi-pencil-square"></i>
 
             Edit
 
-        </button>
+        </a>
 
     </div>
 
@@ -233,12 +236,7 @@ My Profile | KEVORIX Hire
 
         <p>
 
-            Python Django Full Stack Developer with experience in building
-            scalable web applications using Django, Django REST Framework,
-            MySQL and JavaScript.
-
-            Passionate about AI-powered recruitment systems and modern
-            web technologies.
+            {{ profile.about|default:"Tell recruiters about yourself. Share your experience, skills, achievements and career goals." }}
 
         </p>
 
@@ -260,66 +258,122 @@ My Profile | KEVORIX Hire
 
         <h2>Education</h2>
 
-        <button class="edit-link">
+        {% if educations %}
 
-            <i class="bi bi-pencil-square"></i>
+        <a href="{% url 'candidate:education_add' %}" class="edit-link">
 
-            Edit
+            <i class="bi bi-plus-circle"></i>
 
-        </button>
+            Add Education
+
+        </a>
+
+        {% endif %}
 
     </div>
 
     <div class="education-card">
 
-        <div class="education-item">
+        {% if educations %}
 
-            <div class="education-icon">
+            {% for education in educations %}
 
-                <i class="bi bi-mortarboard-fill"></i>
+                <div class="education-item">
+
+                    <div class="education-icon">
+
+                        <i class="bi bi-mortarboard-fill"></i>
+
+                    </div>
+
+                    <div class="education-content">
+
+                        <h3>{{ education.degree }}</h3>
+
+                        <h4>{{ education.institution_name }}</h4>
+
+                        <p>
+
+                            {{ education.start_date|date:"M Y" }}
+
+                            -
+
+                            {% if education.currently_studying %}
+
+                                Present
+
+                            {% else %}
+
+                                {{ education.end_date|date:"M Y" }}
+
+                            {% endif %}
+
+                        </p>
+
+                        {% if education.grade %}
+
+                            <span>Grade: {{ education.grade }}</span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="education-actions">
+
+                        <a href="{% url 'candidate:education_edit' education.pk %}" class="action-btn">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                        </a>
+
+                        <form method="POST"
+                              action="{% url 'candidate:education_delete' education.pk %}">
+
+                            {% csrf_token %}
+
+                            <button type="submit"class="action-btn delete-btn"onclick="return confirm('Are you sure you want to delete this education?');">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <i class="bi bi-mortarboard"></i>
+
+                <h3>No Education Added</h3>
+
+                <p>
+
+                    Add your education history to improve your profile.
+
+                </p>
+
+                <a href="{% url 'candidate:education_add' %}" class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Add Education
+
+                </a>
 
             </div>
 
-            <div class="education-content">
-
-                <h3>Master of Computer Applications (MCA)</h3>
-
-                <h4>SAL Institute of Technology & Engineering Research (GTU)</h4>
-
-                <p>2024 - 2026</p>
-
-                <span>Currently Pursuing</span>
-
-            </div>
-
-        </div>
-
-        <div class="education-item">
-
-            <div class="education-icon">
-
-                <i class="bi bi-mortarboard-fill"></i>
-
-            </div>
-
-            <div class="education-content">
-
-                <h3>Bachelor of Computer Applications (BCA)</h3>
-
-                <h4>President Institute of Computer Application (GU)</h4>
-
-                <p>2021 - 2024</p>
-
-                <span>Completed</span>
-
-            </div>
-
-        </div>
+        {% endif %}
 
     </div>
 
 </section>
-
 <!-- =====================================
      EXPERIENCE
 ===================================== -->
@@ -334,83 +388,121 @@ My Profile | KEVORIX Hire
 
         <h2>Experience</h2>
 
-        <button class="edit-link">
+        {% if experiences %}
 
-            <i class="bi bi-pencil-square"></i>
+        <a href="{% url 'candidate:experience_add' %}" class="edit-link">
 
-            Edit
+            <i class="bi bi-plus-circle"></i>
 
-        </button>
+            Add Experience
+
+        </a>
+
+        {% endif %}
 
     </div>
 
     <div class="experience-card">
 
-        <div class="experience-item">
+        {% if experiences %}
 
-            <div class="experience-icon">
+            {% for experience in experiences %}
 
-                <i class="bi bi-briefcase-fill"></i>
+            <div class="experience-item">
+
+                <div class="experience-icon">
+
+                    <i class="bi bi-briefcase-fill"></i>
+
+                </div>
+
+                <div class="experience-content">
+
+                    <h3>{{ experience.job_title }}</h3>
+
+                    <h4>{{ experience.company_name }}</h4>
+
+                    <p>
+
+                        {{ experience.start_date|date:"M Y" }}
+
+                        -
+
+                        {% if experience.currently_working %}
+
+                            Present
+
+                        {% else %}
+
+                            {{ experience.end_date|date:"M Y" }}
+
+                        {% endif %}
+
+                    </p>
+
+                    {% if experience.description %}
+
+                        <span>{{ experience.description|truncatechars:70 }}</span>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="experience-actions">
+
+                    <a href="{% url 'candidate:experience_edit' experience.pk %}" class="action-btn">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+
+                    <form method="POST"
+                          action="{% url 'candidate:experience_delete' experience.pk %}">
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="action-btn delete-btn"
+                            onclick="return confirm('Are you sure you want to delete this experience?');">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
 
             </div>
 
-            <div class="experience-content">
+            {% endfor %}
 
-                <h3>Python Django Developer Intern</h3>
+        {% else %}
 
-                <h4>Axis Technolabs</h4>
+        <div class="empty-state">
 
-                <p>3 Months Internship</p>
+            <i class="bi bi-briefcase"></i>
 
-                <span>Backend Development • Django • REST API</span>
+            <h3>No Experience Added</h3>
 
-            </div>
+            <p>
+
+                Add your work experience to strengthen your profile.
+
+            </p>
+
+            <a href="{% url 'candidate:experience_add' %}" class="btn btn-primary">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Add Experience
+
+            </a>
 
         </div>
 
-        <div class="experience-item">
-
-            <div class="experience-icon">
-
-                <i class="bi bi-briefcase-fill"></i>
-
-            </div>
-
-            <div class="experience-content">
-
-                <h3>Python Django Developer Intern</h3>
-
-                <h4>Elysial Global Services Pvt. Ltd.</h4>
-
-                <p>6 Months Internship</p>
-
-                <span>Full Stack Development • Django • MySQL</span>
-
-            </div>
-
-        </div>
-
-        <div class="experience-item">
-
-            <div class="experience-icon">
-
-                <i class="bi bi-briefcase-fill"></i>
-
-            </div>
-
-            <div class="experience-content">
-
-                <h3>Python Django Developer Intern</h3>
-
-                <h4>Sparks To Ideas</h4>
-
-                <p>9 Months Internship</p>
-
-                <span>Python • Django • Live Projects</span>
-
-            </div>
-
-        </div>
+        {% endif %}
 
     </div>
 
@@ -425,50 +517,103 @@ My Profile | KEVORIX Hire
 
         <h2>Skills</h2>
 
-        <button class="edit-link">
+        {% if skills %}
 
-            <i class="bi bi-pencil-square"></i>
+        <a href="{% url 'candidate:skill_add' %}" class="edit-link">
 
-            Edit
+            <i class="bi bi-plus-circle"></i>
 
-        </button>
+            Add Skill
+
+        </a>
+
+        {% endif %}
 
     </div>
 
     <div class="skills-card">
 
+        {% if skills %}
+
         <div class="skills-list">
 
-            <span class="skill-badge">Python</span>
+            {% for skill in skills %}
 
-            <span class="skill-badge">Django</span>
+            <div class="skill-item">
 
-            <span class="skill-badge">Django REST Framework</span>
+                <span class="skill-badge">
 
-            <span class="skill-badge">MySQL</span>
+                    {{ skill.name }}
 
-            <span class="skill-badge">HTML5</span>
+                </span>
 
-            <span class="skill-badge">CSS3</span>
+                <span class="skill-level">
 
-            <span class="skill-badge">JavaScript</span>
+                    {{ skill.get_proficiency_display }}
 
-            <span class="skill-badge">Bootstrap</span>
+                </span>
 
-            <span class="skill-badge">Git</span>
+                <div class="skill-actions">
 
-            <span class="skill-badge">GitHub</span>
+                    <a href="{% url 'candidate:skill_edit' skill.pk %}" class="action-btn">
 
-            <span class="skill-badge">REST API</span>
+                        <i class="bi bi-pencil-square"></i>
 
-            <span class="skill-badge">Problem Solving</span>
+                    </a>
+
+                    <form method="POST"
+                          action="{% url 'candidate:skill_delete' skill.pk %}">
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="action-btn delete-btn"
+                            onclick="return confirm('Are you sure you want to delete this skill?');">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
 
         </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <i class="bi bi-lightning-charge"></i>
+
+            <h3>No Skills Added</h3>
+
+            <p>
+
+                Add your technical and professional skills to improve your profile.
+
+            </p>
+
+            <a href="{% url 'candidate:skill_add' %}" class="btn btn-primary">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Add Skill
+
+            </a>
+
+        </div>
+
+        {% endif %}
 
     </div>
 
 </section>
-
 <!-- =====================================
      PROJECTS
 ===================================== -->

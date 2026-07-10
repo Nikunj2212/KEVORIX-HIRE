@@ -1,10 +1,10 @@
 {% extends "candidate/base/candidate_base.html" %}
 {% load static %}
 
-{% block title %}Edit Education | KEVORIX Hire{% endblock %}
+{% block title %}Add Experience | KEVORIX Hire{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/candidate/profile/education-form.css' %}">
+<link rel="stylesheet" href="{% static 'css/candidate/profile/experience-form.css' %}">
 {% endblock %}
 
 {% block candidate_content %}
@@ -23,11 +23,11 @@
 
             </a>
 
-            <h1>Edit Education</h1>
+            <h1>Add Experience</h1>
 
             <p>
 
-                Update your education details.
+                Add your professional work experience to strengthen your profile.
 
             </p>
 
@@ -39,11 +39,11 @@
 
         <div class="card-header">
 
-            <h2>Edit Education</h2>
+            <h2>Experience Details</h2>
 
             <p>
 
-                Keep your education information up to date.
+                Share your professional experience accurately.
 
             </p>
 
@@ -57,33 +57,25 @@
 
                 <div class="form-group">
 
-                    <label>Education Type</label>
+                    <label>Job Title</label>
 
-                    {{ form.education_type }}
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Institution Name</label>
-
-                    {{ form.institution_name }}
+                    {{ form.job_title }}
 
                 </div>
 
                 <div class="form-group">
 
-                    <label>Degree</label>
+                    <label>Company Name</label>
 
-                    {{ form.degree }}
+                    {{ form.company_name }}
 
                 </div>
 
                 <div class="form-group">
 
-                    <label>Field of Study</label>
+                    <label>Employment Type</label>
 
-                    {{ form.field_of_study }}
+                    {{ form.employment_type }}
 
                 </div>
 
@@ -92,14 +84,6 @@
                     <label>Location</label>
 
                     {{ form.location }}
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Grade / CGPA</label>
-
-                    {{ form.grade }}
 
                 </div>
 
@@ -123,9 +107,9 @@
 
                     <label>
 
-                        {{ form.currently_studying }}
+                        {{ form.currently_working }}
 
-                        I am currently studying here
+                        I currently work here
 
                     </label>
 
@@ -133,7 +117,7 @@
 
                 <div class="form-group full-width">
 
-                    <label>Description</label>
+                    <label>Responsibilities & Achievements</label>
 
                     {{ form.description }}
 
@@ -151,7 +135,7 @@
 
                 <button type="submit" class="btn btn-primary">
 
-                    Update Education
+                    Save Experience
 
                 </button>
 
@@ -163,6 +147,6 @@
 
 </div>
 
-<script src="{% static 'js/candidate/profile/education-form.js' %}"></script>
+<script src="{% static 'js/candidate/profile/experience-form.js' %}"></script>
 
 {% endblock %}

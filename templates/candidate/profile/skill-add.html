@@ -1,0 +1,100 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}Add Skill | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/skill-form.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="skill-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+            <h1>Add Skill</h1>
+
+            <p>
+
+                Add your technical or professional skills to improve your profile and AI job matching.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="skill-card">
+
+        <div class="card-header">
+
+            <h2>Skill Details</h2>
+
+            <p>
+
+                Showcase the technologies and skills you are confident with.
+
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Skill Name</label>
+
+                    {{ form.name }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Proficiency Level</label>
+
+                    {{ form.proficiency }}
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Save Skill
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/candidate/profile/skill-form.js' %}"></script>
+
+{% endblock %}

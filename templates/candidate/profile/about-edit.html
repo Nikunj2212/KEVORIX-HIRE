@@ -1,0 +1,185 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}About Me | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/about-edit.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="about-edit-page">
+
+    <div class="page-header">
+
+        <div class="page-header-left">
+
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+            <h1>About Me</h1>
+
+            <p>
+
+                Tell recruiters who you are, what you do, and why you're a great candidate.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="about-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>Edit About</h2>
+
+                <p>
+
+                    A strong About section increases recruiter engagement and profile visibility.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <form method="POST" novalidate>
+
+            {% csrf_token %}
+
+            <div class="about-layout">
+
+                <!-- Left Side -->
+
+                <div class="about-form">
+
+                    <div class="form-group">
+
+                        <label for="{{ form.about.id_for_label }}">
+
+                            About
+
+                            <span>*</span>
+
+                        </label>
+
+                        {{ form.about }}
+
+                        {% if form.about.errors %}
+
+                            <div class="field-error">
+
+                                {{ form.about.errors.0 }}
+
+                            </div>
+
+                        {% endif %}
+
+                        <div class="textarea-footer">
+
+                            <small>
+
+                                Minimum 20 characters
+
+                            </small>
+
+                            <span id="character-counter">
+
+                                0 / 2000
+
+                            </span>
+
+                        </div>
+
+                    </div>
+                                    </div>
+
+                <!-- Right Side -->
+
+                <div class="tips-card">
+
+                    <div class="tips-header">
+
+                        <i class="bi bi-stars"></i>
+
+                        <h3>Writing Tips</h3>
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            Introduce yourself professionally.
+                        </li>
+
+                        <li>
+                            Mention your experience.
+                        </li>
+
+                        <li>
+                            Highlight your strongest skills.
+                        </li>
+
+                        <li>
+                            Mention technologies you work with.
+                        </li>
+
+                        <li>
+                            Add achievements if possible.
+                        </li>
+
+                        <li>
+                            Explain your career goals.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    <i class="bi bi-arrow-left-circle"></i>
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/candidate/profile/about-edit.js' %}"></script>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="{% static 'js/candidate/candidate.js' %}"></script>
+
+{% endblock %}

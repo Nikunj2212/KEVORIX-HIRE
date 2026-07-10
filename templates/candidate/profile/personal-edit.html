@@ -4,240 +4,242 @@
 {% block title %}Personal Information | KEVORIX Hire{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/candidate/profile/profile-edit-base.css' %}">
 <link rel="stylesheet" href="{% static 'css/candidate/profile/personal-edit.css' %}">
 {% endblock %}
 
 {% block candidate_content %}
 
-<div class="profile-edit-page">
-
-    <!-- ==========================
-         Breadcrumb
-    =========================== -->
-
-    <nav class="page-breadcrumb">
-
-        <a href="{% url 'candidate:dashboard' %}">Dashboard</a>
-
-        <span>/</span>
-
-        <a href="{% url 'candidate:profile' %}">My Profile</a>
-
-        <span>/</span>
-
-        <span class="active">
-            Personal Information
-        </span>
-
-    </nav>
-
-
-    <!-- ==========================
-         Page Header
-    =========================== -->
+<div class="personal-edit-page">
 
     <div class="page-header">
 
-        <h1 class="page-title">
+        <div class="page-header-left">
 
-            Personal Information
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+                <i class="bi bi-arrow-left"></i>
+                Back to Profile
+            </a>
 
-        </h1>
+            <h1>Personal Information</h1>
 
-        <p class="page-subtitle">
+            <p>
+                Keep your profile information accurate. Recruiters use these details
+                to identify and contact you.
+            </p>
 
-            Keep your personal information up to date so recruiters
-            can identify your profile accurately.
-
-        </p>
+        </div>
 
     </div>
 
-
-    <!-- ==========================
-         Card
-    =========================== -->
-
-    <div class="profile-edit-card">
+    <div class="edit-card">
 
         <div class="card-header">
 
-            <div class="card-header-left">
+            <div>
 
-                <h2 class="card-title">
+                <h2>Edit Personal Information</h2>
 
-                    Personal Details
-
-                </h2>
-
-                <p class="card-description">
-
-                    Update your basic profile information.
-
+                <p>
+                    Update your basic profile details.
                 </p>
 
             </div>
 
         </div>
 
+        <form method="POST" novalidate>
 
-        <div class="card-body">
+            {% csrf_token %}
 
-            <form method="post" class="profile-form">
+            <div class="form-grid">
 
-                {% csrf_token %}
+                <!-- First Name -->
 
-                <!-- Fields will come here -->
+                <div class="form-group">
 
-                <div class="profile-form-grid">
+                    <label for="{{ form.first_name.id_for_label }}">
+                        First Name
+                        <span>*</span>
+                    </label>
 
-                    <div class="form-group">
+                    {{ form.first_name }}
 
-                        <label class="form-label" for="{{ form.first_name.id_for_label }}">
-                            First Name
-                            <span class="required">*</span>
-                        </label>
+                    {% if form.first_name.errors %}
 
-                        {{ form.first_name }}
+                        <div class="field-error">
 
-                        {% if form.first_name.errors %}
-                            <div class="form-error">
-                                {{ form.first_name.errors.0 }}
-                            </div>
-                        {% endif %}
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label" for="{{ form.last_name.id_for_label }}">
-                            Last Name
-                            <span class="required">*</span>
-                        </label>
-
-                        {{ form.last_name }}
-
-                        {% if form.last_name.errors %}
-                            <div class="form-error">
-                                {{ form.last_name.errors.0 }}
-                            </div>
-                        {% endif %}
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label" for="{{ form.phone.id_for_label }}">
-                            Phone Number
-                            <span class="required">*</span>
-                        </label>
-
-                        {{ form.phone }}
-
-                        {% if form.phone.errors %}
-                            <div class="form-error">
-                                {{ form.phone.errors.0 }}
-                            </div>
-                        {% endif %}
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label" for="{{ form.email.id_for_label }}">
-                            Email Address
-                        </label>
-
-                        {{ form.email }}
-
-                        <div class="form-helper">
-
-                            Email cannot be changed here.
-                            A secure Change Email feature will be available in Settings.
+                            {{ form.first_name.errors.0 }}
 
                         </div>
 
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label" for="{{ form.date_of_birth.id_for_label }}">
-                            Date of Birth
-                        </label>
-
-                        {{ form.date_of_birth }}
-
-                        {% if form.date_of_birth.errors %}
-                            <div class="form-error">
-                                {{ form.date_of_birth.errors.0 }}
-                            </div>
-                        {% endif %}
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="form-label" for="{{ form.gender.id_for_label }}">
-                            Gender
-                        </label>
-
-                        {{ form.gender }}
-
-                        {% if form.gender.errors %}
-                            <div class="form-error">
-                                {{ form.gender.errors.0 }}
-                            </div>
-                        {% endif %}
-
-                    </div>
-
-                    <div class="form-group full-width">
-
-                        <label class="form-label" for="{{ form.headline.id_for_label }}">
-                            Professional Headline
-                        </label>
-
-                        {{ form.headline }}
-
-                        {% if form.headline.errors %}
-                            <div class="form-error">
-                                {{ form.headline.errors.0 }}
-                            </div>
-                        {% endif %}
-
-                    </div>
-
-                    <div class="form-group full-width">
-
-                        <label class="form-label" for="{{ form.current_job_title.id_for_label }}">
-                            Current Job Title
-                        </label>
-
-                        {{ form.current_job_title }}
-
-                        {% if form.current_job_title.errors %}
-                            <div class="form-error">
-                                {{ form.current_job_title.errors.0 }}
-                            </div>
-                        {% endif %}
-
-                    </div>
+                    {% endif %}
 
                 </div>
 
+                <!-- Last Name -->
 
+                <div class="form-group">
+
+                    <label for="{{ form.last_name.id_for_label }}">
+                        Last Name
+                    </label>
+
+                    {{ form.last_name }}
+
+                    {% if form.last_name.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.last_name.errors.0 }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Email -->
+
+                <div class="form-group full-width">
+
+                    <label for="{{ form.email.id_for_label }}">
+                        Email Address
+                    </label>
+
+                    {{ form.email }}
+
+                    <small class="helper-text">
+
+                        Your email address is used for login and verification.
+                        It cannot be changed from this page.
+
+                    </small>
+
+                </div>
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.phone.id_for_label }}">
+                        Phone Number
+                        <span>*</span>
+                    </label>
+
+                    {{ form.phone }}
+
+                    {% if form.phone.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.phone.errors.0 }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Date Of Birth -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.date_of_birth.id_for_label }}">
+                        Date of Birth
+                    </label>
+
+                    {{ form.date_of_birth }}
+
+                    {% if form.date_of_birth.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.date_of_birth.errors.0 }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Gender -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.gender.id_for_label }}">
+                        Gender
+                    </label>
+
+                    {{ form.gender }}
+
+                    {% if form.gender.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.gender.errors.0 }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Headline -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.headline.id_for_label }}">
+                        Professional Headline
+                    </label>
+
+                    {{ form.headline }}
+
+                    {% if form.headline.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.headline.errors.0 }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Current Job -->
+
+                <div class="form-group full-width">
+
+                    <label for="{{ form.current_job_title.id_for_label }}">
+                        Current Job Title
+                    </label>
+
+                    {{ form.current_job_title }}
+
+                    {% if form.current_job_title.errors %}
+
+                        <div class="field-error">
+
+                            {{ form.current_job_title.errors.0 }}
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
                 <div class="form-actions">
 
-                    <a href="{% url 'candidate:profile' %}"
-                       class="btn btn-cancel">
+                    <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                        <i class="bi bi-arrow-left-circle"></i>
 
                         Cancel
 
                     </a>
 
-                    <button type="submit"
-                            class="btn btn-save">
+                    <button type="submit" class="btn btn-primary">
+
+                        <i class="bi bi-check-circle"></i>
 
                         Save Changes
 
@@ -245,12 +247,17 @@
 
                 </div>
 
-            </form>
+            </div>
 
-        </div>
+        </form>
 
     </div>
 
 </div>
+
+{% endblock %}
+{% block extra_js %}
+
+<script src="{% static 'js/candidate/candidate.js' %}"></script>
 
 {% endblock %}

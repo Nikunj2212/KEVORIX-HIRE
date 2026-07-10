@@ -1,0 +1,555 @@
+/* ==========================================================
+   KEVORIX Hire
+   Personal Information Edit
+   ========================================================== */
+
+.personal-edit-page{
+
+    max-width:1100px;
+
+    margin:40px auto;
+
+    padding:0 20px;
+
+}
+
+
+/* ==========================================================
+   Page Header
+   ========================================================== */
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:32px;
+
+}
+
+.page-header-left h1{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--text-primary);
+
+    margin-top:12px;
+
+    margin-bottom:10px;
+
+}
+
+.page-header-left p{
+
+    max-width:650px;
+
+    color:var(--text-secondary);
+
+    line-height:1.7;
+
+}
+
+.back-link{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.back-link:hover{
+
+    opacity:.8;
+
+}
+
+
+
+/* ==========================================================
+   Card
+   ========================================================== */
+
+.edit-card{
+
+    background:var(--card-bg);
+
+    border:1px solid var(--border-color);
+
+    border-radius:22px;
+
+    padding:40px;
+
+    box-shadow:0 12px 40px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+[data-theme="dark"] .edit-card{
+
+    box-shadow:0 12px 35px rgba(0,0,0,.35);
+
+}
+
+.card-header{
+
+    margin-bottom:32px;
+
+    padding-bottom:22px;
+
+    border-bottom:1px solid var(--border-color);
+
+}
+
+.card-header h2{
+
+    font-size:1.45rem;
+
+    color:var(--text-primary);
+
+    margin-bottom:8px;
+
+}
+
+.card-header p{
+
+    color:var(--text-secondary);
+
+}
+
+
+
+/* ==========================================================
+   Grid
+   ========================================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:28px;
+
+}
+
+.full-width{
+
+    grid-column:1/-1;
+
+}
+
+
+
+/* ==========================================================
+   Form Group
+   ========================================================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.form-group label{
+
+    margin-bottom:10px;
+
+    color:var(--text-primary);
+
+    font-size:.94rem;
+
+    font-weight:600;
+
+}
+
+.form-group label span{
+
+    color:#ef4444;
+
+}
+
+
+
+/* ==========================================================
+   Inputs
+   ========================================================== */
+
+.form-control,
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    height:54px;
+
+    border-radius:14px;
+
+    border:1.6px solid #CBD5E1;
+
+    background:var(--input-bg);
+
+    color:var(--text-primary);
+
+    padding:0 18px;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:all .25s ease;
+
+    outline:none;
+
+}
+
+textarea{
+
+    min-height:120px;
+
+    padding-top:14px;
+
+    resize:vertical;
+
+}
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea{
+
+    border:1.6px solid rgba(255,255,255,.12);
+
+}
+
+[data-theme="dark"] .form-group input:hover,
+[data-theme="dark"] .form-group select:hover,
+[data-theme="dark"] .form-group textarea:hover{
+
+    border-color:#94A3B8;
+
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:var(--primary);
+
+    background:var(--card-bg);
+
+    box-shadow:
+        0 0 0 4px rgba(79,70,229,.12),
+        0 8px 24px rgba(79,70,229,.08);
+
+}
+
+.form-group input::placeholder,
+
+textarea::placeholder{
+
+    color:var(--text-muted);
+
+}
+/* ==========================================================
+   Helper Text
+========================================================== */
+
+.helper-text{
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:.82rem;
+
+    color:var(--text-secondary);
+
+    line-height:1.6;
+
+}
+
+
+/* ==========================================================
+   Error Messages
+========================================================== */
+
+.field-error{
+
+    margin-top:8px;
+
+    color:#dc2626;
+
+    font-size:.84rem;
+
+    font-weight:500;
+
+}
+
+[data-theme="dark"] .field-error{
+
+    color:#f87171;
+
+}
+
+
+/* ==========================================================
+   Disabled Field
+========================================================== */
+
+input:disabled{
+
+    cursor:not-allowed;
+
+    opacity:.75;
+
+    background:var(--surface-secondary);
+
+}
+
+
+/* ==========================================================
+   Form Actions
+========================================================== */
+
+.form-actions{
+
+    grid-column:1/-1;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-top:20px;
+
+    padding-top:28px;
+
+    border-top:1px solid var(--border-color);
+
+}
+
+
+/* ==========================================================
+   Buttons
+========================================================== */
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border-radius:14px;
+
+    border:none;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+    transition:all .25s ease;
+
+}
+
+.btn i{
+
+    font-size:1rem;
+
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 24px rgba(59,130,246,.25);
+
+}
+
+.btn-secondary{
+
+    background:transparent;
+
+    color:var(--text-primary);
+
+    border:1px solid var(--border-color);
+
+}
+
+.btn-secondary:hover{
+
+    background:var(--surface-secondary);
+
+}
+
+
+/* ==========================================================
+   Card Hover
+========================================================== */
+
+.edit-card:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================================
+   Responsive
+========================================================== */
+
+@media (max-width:992px){
+
+    .edit-card{
+
+        padding:32px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .personal-edit-page{
+
+        margin:24px auto;
+
+        padding:0 16px;
+
+    }
+
+    .page-header{
+
+        margin-bottom:24px;
+
+    }
+
+    .page-header-left h1{
+
+        font-size:1.7rem;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+        gap:22px;
+
+    }
+
+    .full-width{
+
+        grid-column:auto;
+
+    }
+
+    .form-actions{
+
+        flex-direction:column-reverse;
+
+        align-items:stretch;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+    }
+
+}
+
+@media (max-width:480px){
+
+    .edit-card{
+
+        padding:22px;
+
+        border-radius:18px;
+
+    }
+
+    .page-header-left h1{
+
+        font-size:1.45rem;
+
+    }
+
+    .form-group input,
+
+    .form-group select,
+
+    .form-group textarea{
+
+        height:50px;
+
+        font-size:14px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   Dark Theme Fine Tuning
+========================================================== */
+
+[data-theme="dark"] .helper-text{
+
+    color:var(--text-muted);
+
+}
+
+[data-theme="dark"] .btn-secondary:hover{
+
+    background:rgba(255,255,255,.06);
+
+}
+
+[data-theme="dark"] .form-group input:focus,
+
+[data-theme="dark"] .form-group select:focus,
+
+[data-theme="dark"] .form-group textarea:focus{
+
+    box-shadow:0 0 0 4px rgba(59,130,246,.18);
+
+}

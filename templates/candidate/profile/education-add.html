@@ -1,7 +1,7 @@
 {% extends "candidate/base/candidate_base.html" %}
 {% load static %}
 
-{% block title %}Edit Education | KEVORIX Hire{% endblock %}
+{% block title %}Add Education | KEVORIX Hire{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/candidate/profile/education-form.css' %}">
@@ -16,19 +16,14 @@
         <div>
 
             <a href="{% url 'candidate:profile' %}" class="back-link">
-
                 <i class="bi bi-arrow-left"></i>
-
                 Back to Profile
-
             </a>
 
-            <h1>Edit Education</h1>
+            <h1>Add Education</h1>
 
             <p>
-
-                Update your education details.
-
+                Add your educational qualifications to strengthen your professional profile.
             </p>
 
         </div>
@@ -39,12 +34,10 @@
 
         <div class="card-header">
 
-            <h2>Edit Education</h2>
+            <h2>Education Details</h2>
 
             <p>
-
-                Keep your education information up to date.
-
+                Fill in your education information accurately.
             </p>
 
         </div>
@@ -56,67 +49,43 @@
             <div class="form-grid">
 
                 <div class="form-group">
-
                     <label>Education Type</label>
-
                     {{ form.education_type }}
-
                 </div>
 
                 <div class="form-group">
-
                     <label>Institution Name</label>
-
                     {{ form.institution_name }}
-
                 </div>
 
                 <div class="form-group">
-
                     <label>Degree</label>
-
                     {{ form.degree }}
-
                 </div>
 
                 <div class="form-group">
-
                     <label>Field of Study</label>
-
                     {{ form.field_of_study }}
-
                 </div>
 
                 <div class="form-group">
-
                     <label>Location</label>
-
                     {{ form.location }}
-
                 </div>
 
                 <div class="form-group">
-
                     <label>Grade / CGPA</label>
-
                     {{ form.grade }}
-
                 </div>
 
                 <div class="form-group">
-
                     <label>Start Date</label>
-
                     {{ form.start_date }}
-
                 </div>
 
                 <div class="form-group">
-
                     <label>End Date</label>
-
                     {{ form.end_date }}
-
                 </div>
 
                 <div class="form-group full-width checkbox-group">
@@ -143,7 +112,7 @@
 
             <div class="form-actions">
 
-                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+                <a href="{% url 'candidate:education' %}" class="btn btn-secondary">
 
                     Cancel
 
@@ -151,7 +120,7 @@
 
                 <button type="submit" class="btn btn-primary">
 
-                    Update Education
+                    Save Education
 
                 </button>
 

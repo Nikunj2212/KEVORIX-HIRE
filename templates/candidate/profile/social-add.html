@@ -1,0 +1,134 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}Add Social Links | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/social-form.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="social-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+            <h1>Add Social Links</h1>
+
+            <p>
+
+                Add your professional profiles to increase recruiter visibility.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="social-card">
+
+        <div class="card-header">
+
+            <h2>Professional Profiles</h2>
+
+            <p>
+
+                Add your professional social links.
+
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>LinkedIn</label>
+                    {{ form.linkedin }}
+                </div>
+
+                <div class="form-group">
+                    <label>GitHub</label>
+                    {{ form.github }}
+                </div>
+
+                <div class="form-group">
+                    <label>Portfolio</label>
+                    {{ form.portfolio }}
+                </div>
+
+                <div class="form-group">
+                    <label>LeetCode</label>
+                    {{ form.leetcode }}
+                </div>
+
+                <div class="form-group">
+                    <label>HackerRank</label>
+                    {{ form.hackerrank }}
+                </div>
+
+                <div class="form-group">
+                    <label>CodeChef</label>
+                    {{ form.codechef }}
+                </div>
+
+                <div class="form-group">
+                    <label>Codeforces</label>
+                    {{ form.codeforces }}
+                </div>
+
+                <div class="form-group">
+                    <label>Kaggle</label>
+                    {{ form.kaggle }}
+                </div>
+
+                <div class="form-group">
+                    <label>Stack Overflow</label>
+                    {{ form.stackoverflow }}
+                </div>
+
+                <div class="form-group">
+                    <label>Medium</label>
+                    {{ form.medium }}
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Save Social Links
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/candidate/profile/social-form.js' %}"></script>
+
+{% endblock %}

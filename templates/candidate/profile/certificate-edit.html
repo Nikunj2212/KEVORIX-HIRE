@@ -1,0 +1,152 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}Edit Certificate | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/certificate-form.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="certificate-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+            <h1>Edit Certificate</h1>
+
+            <p>
+
+                Update your certificate information.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="certificate-card">
+
+        <div class="card-header">
+
+            <h2>Edit Certificate</h2>
+
+            <p>
+
+                Keep your certifications updated.
+
+            </p>
+
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Certificate Name</label>
+
+                    {{ form.certificate_name }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Issuing Organization</label>
+
+                    {{ form.issuing_organization }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Issue Date</label>
+
+                    {{ form.issue_date }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Expiry Date</label>
+
+                    {{ form.expiry_date }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Credential ID</label>
+
+                    {{ form.credential_id }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Credential URL</label>
+
+                    {{ form.credential_url }}
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label>Certificate File</label>
+
+                    {{ form.certificate_file }}
+
+                </div>
+
+                <div class="form-group full-width checkbox-group">
+
+                    <label>
+
+                        {{ form.does_not_expire }}
+
+                        This certificate does not expire
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Update Certificate
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/candidate/profile/certificate-form.js' %}"></script>
+
+{% endblock %}

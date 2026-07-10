@@ -2,8 +2,8 @@ from django import forms
 from apps.accounts.models import User
 from .models import CandidateProfile
 from .models import Education
-from .models import CandidateProfile, Education, Experience
-from .models import CandidateProfile, Education, Experience, Skill
+from .models import CandidateProfile, Education, Experience,Skill,Project,Certificate,Language,SocialLink
+
 
 
 class UserForm(forms.ModelForm):
@@ -604,3 +604,280 @@ class SkillForm(forms.ModelForm):
         name = self.cleaned_data["name"].strip()
 
         return name.title()
+    
+    
+class ProjectForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Project
+
+        fields = [
+
+            "title",
+            "short_description",
+            "description",
+            "technologies",
+            "github_url",
+            "live_url",
+            "thumbnail",
+            "start_date",
+            "end_date",
+            "currently_working",
+            "featured",
+
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Project Title",
+                }
+            ),
+
+            "short_description": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Short description of your project",
+                }
+            ),
+
+            "description": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "rows": 6,
+                    "placeholder": "Describe your project, features, challenges and achievements.",
+                }
+            ),
+
+            "technologies": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Python, Django, DRF, MySQL",
+                }
+            ),
+
+            "github_url": forms.URLInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "https://github.com/username/project",
+                }
+            ),
+
+            "live_url": forms.URLInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "https://yourproject.com",
+                }
+            ),
+
+            "start_date": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date",
+                }
+            ),
+
+            "end_date": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date",
+                }
+            ),
+
+        }
+
+    def clean(self):
+
+        cleaned_data = super().clean()
+
+        start_date = cleaned_data.get("start_date")
+        end_date = cleaned_data.get("end_date")
+        currently_working = cleaned_data.get("currently_working")
+
+        if not currently_working and not end_date:
+
+            raise forms.ValidationError(
+                "End date is required unless the project is currently in progress."
+            )
+
+        if start_date and end_date and end_date < start_date:
+
+            raise forms.ValidationError(
+                "End date cannot be earlier than start date."
+            )
+
+        return cleaned_data
+    
+    
+class CertificateForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Certificate
+
+        fields = [
+
+            "certificate_name",
+            "issuing_organization",
+            "issue_date",
+            "expiry_date",
+            "credential_id",
+            "credential_url",
+            "certificate_file",
+            "does_not_expire",
+
+        ]
+
+        widgets = {
+
+            "certificate_name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Certificate Name",
+                }
+            ),
+
+            "issuing_organization": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Issuing Organization",
+                }
+            ),
+
+            "issue_date": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date",
+                }
+            ),
+
+            "expiry_date": forms.DateInput(
+                attrs={
+                    "class": "form-control",
+                    "type": "date",
+                }
+            ),
+
+            "credential_id": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Credential ID (Optional)",
+                }
+            ),
+
+            "credential_url": forms.URLInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "https://...",
+                }
+            ),
+
+        }
+
+    def clean(self):
+
+        cleaned_data = super().clean()
+
+        issue_date = cleaned_data.get("issue_date")
+        expiry_date = cleaned_data.get("expiry_date")
+        does_not_expire = cleaned_data.get("does_not_expire")
+
+        if not does_not_expire and not expiry_date:
+
+            raise forms.ValidationError(
+                "Expiry date is required unless the certificate does not expire."
+            )
+
+        if issue_date and expiry_date and expiry_date < issue_date:
+
+            raise forms.ValidationError(
+                "Expiry date cannot be earlier than issue date."
+            )
+
+        return cleaned_data
+    
+class LanguageForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Language
+
+        fields = [
+
+            "language",
+            "proficiency",
+
+        ]
+
+        widgets = {
+
+            "language": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Language (e.g. English, Hindi, Gujarati)"
+                }
+            ),
+
+            "proficiency": forms.Select(
+                attrs={
+                    "class": "form-control"
+                }
+            ),
+
+        }
+
+    def clean_language(self):
+
+        language = self.cleaned_data["language"].strip()
+
+        return language.title()
+    
+    
+    
+class SocialLinkForm(forms.ModelForm):
+
+    class Meta:
+
+        model = SocialLink
+
+        fields = [
+
+            "linkedin",
+            "github",
+            "portfolio",
+            "leetcode",
+            "hackerrank",
+            "codechef",
+            "codeforces",
+            "kaggle",
+            "stackoverflow",
+            "medium",
+
+        ]
+
+        widgets = {
+
+            "linkedin": forms.URLInput(attrs={"class":"form-control","placeholder":"https://linkedin.com/in/username"}),
+
+            "github": forms.URLInput(attrs={"class":"form-control","placeholder":"https://github.com/username"}),
+
+            "portfolio": forms.URLInput(attrs={"class":"form-control","placeholder":"https://yourportfolio.com"}),
+
+            "leetcode": forms.URLInput(attrs={"class":"form-control","placeholder":"https://leetcode.com/u/username"}),
+
+            "hackerrank": forms.URLInput(attrs={"class":"form-control","placeholder":"https://hackerrank.com/profile/username"}),
+
+            "codechef": forms.URLInput(attrs={"class":"form-control","placeholder":"https://codechef.com/users/username"}),
+
+            "codeforces": forms.URLInput(attrs={"class":"form-control","placeholder":"https://codeforces.com/profile/username"}),
+
+            "kaggle": forms.URLInput(attrs={"class":"form-control","placeholder":"https://kaggle.com/username"}),
+
+            "stackoverflow": forms.URLInput(attrs={"class":"form-control","placeholder":"https://stackoverflow.com/users/..."}),
+
+            "medium": forms.URLInput(attrs={"class":"form-control","placeholder":"https://medium.com/@username"}),
+
+        }

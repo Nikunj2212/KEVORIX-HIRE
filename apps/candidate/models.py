@@ -366,3 +366,175 @@ class Project(models.Model):
     def __str__(self):
 
         return self.title
+    
+    
+    
+class Certificate(models.Model):
+
+    profile = models.ForeignKey(
+        CandidateProfile,
+        on_delete=models.CASCADE,
+        related_name="certificates"
+    )
+
+    certificate_name = models.CharField(
+        max_length=200
+    )
+
+    issuing_organization = models.CharField(
+        max_length=200
+    )
+
+    issue_date = models.DateField()
+
+    expiry_date = models.DateField(
+        blank=True,
+        null=True
+    )
+
+    credential_id = models.CharField(
+        max_length=150,
+        blank=True
+    )
+
+    credential_url = models.URLField(
+        blank=True
+    )
+
+    certificate_file = models.FileField(
+        upload_to="candidate/certificates/",
+        blank=True,
+        null=True
+    )
+
+    does_not_expire = models.BooleanField(
+        default=False
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    class Meta:
+
+        ordering = ["-issue_date"]
+
+        verbose_name = "Certificate"
+
+        verbose_name_plural = "Certificates"
+
+    def __str__(self):
+
+        return self.certificate_name
+    
+class Language(models.Model):
+
+    class Proficiency(models.TextChoices):
+
+        NATIVE = "native", "Native"
+
+        FLUENT = "fluent", "Fluent"
+
+        PROFESSIONAL = "professional", "Professional"
+
+        INTERMEDIATE = "intermediate", "Intermediate"
+
+        BASIC = "basic", "Basic"
+
+    profile = models.ForeignKey(
+        CandidateProfile,
+        on_delete=models.CASCADE,
+        related_name="languages"
+    )
+
+    language = models.CharField(
+        max_length=100
+    )
+
+    proficiency = models.CharField(
+        max_length=20,
+        choices=Proficiency.choices,
+        default=Proficiency.INTERMEDIATE
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    class Meta:
+
+        ordering = ["language"]
+
+        unique_together = ("profile", "language")
+
+        verbose_name = "Language"
+
+        verbose_name_plural = "Languages"
+
+    def __str__(self):
+
+        return self.language
+    
+class SocialLink(models.Model):
+
+    profile = models.OneToOneField(
+        CandidateProfile,
+        on_delete=models.CASCADE,
+        related_name="social_links"
+    )
+
+    linkedin = models.URLField(
+        blank=True
+    )
+
+    github = models.URLField(
+        blank=True
+    )
+
+    portfolio = models.URLField(
+        blank=True
+    )
+
+    leetcode = models.URLField(
+        blank=True
+    )
+
+    hackerrank = models.URLField(
+        blank=True
+    )
+
+    codechef = models.URLField(
+        blank=True
+    )
+
+    codeforces = models.URLField(
+        blank=True
+    )
+
+    kaggle = models.URLField(
+        blank=True
+    )
+
+    stackoverflow = models.URLField(
+        blank=True
+    )
+
+    medium = models.URLField(
+        blank=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    def __str__(self):
+
+        return self.profile.user.get_full_name()

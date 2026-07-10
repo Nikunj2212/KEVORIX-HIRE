@@ -14,6 +14,16 @@ from .models import CandidateProfile, Education, Experience
 from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm
 from .models import CandidateProfile, Education, Experience, Skill
 from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm
+from .models import CandidateProfile, Education, Experience, Skill, Project
+from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm
+from django.urls import reverse
+from .models import CandidateProfile, Education, Experience, Skill, Project, Certificate
+from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm, CertificateForm
+from .models import CandidateProfile, Education, Experience, Skill, Project, Certificate, Language
+from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm, CertificateForm, LanguageForm
+from .models import CandidateProfile, Education, Experience, Skill, Project, Certificate, Language, SocialLink
+from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm, CertificateForm, LanguageForm, SocialLinkForm
+
 
 
 @login_required(login_url="accounts:login")
@@ -33,6 +43,12 @@ def profile(request):
     experiences = profile.experiences.all()
     
     skills = profile.skills.all()
+    
+    projects = profile.projects.all()
+    
+    certificates = profile.certificates.all()
+    languages = profile.languages.all()
+    social_links = SocialLink.objects.filter(profile=profile).first()
 
     context = {
 
@@ -40,6 +56,10 @@ def profile(request):
         "educations": educations,
         "experiences": experiences,
         "skills": skills,
+        "projects": projects,
+        "certificates": certificates,
+        "languages": languages,
+        "social_links": social_links,
     }
 
     return render(
@@ -74,7 +94,7 @@ def edit_profile(request):
 
             profile_form.save()
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#profile")
 
     else:
 
@@ -129,7 +149,7 @@ def personal_edit(request):
                 "Personal information updated successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#personal")
 
         else:
 
@@ -182,7 +202,7 @@ def about_edit(request):
                 "About information updated successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#about")
 
         messages.error(
             request,
@@ -259,7 +279,7 @@ def education_add(request):
                 "Education added successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#education")
 
         messages.error(
             request,
@@ -314,7 +334,7 @@ def education_edit(request, pk):
                 "Education updated successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#education")
 
         messages.error(
             request,
@@ -366,7 +386,7 @@ def education_delete(request, pk):
             "Education deleted successfully."
         )
 
-        return redirect("candidate:profile")
+        return redirect(f"{reverse('candidate:profile')}#education")
 
     return redirect("candidate:education")
 
@@ -395,7 +415,7 @@ def experience_add(request):
                 "Experience added successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#experience")
 
         messages.error(
             request,
@@ -450,7 +470,7 @@ def experience_edit(request, pk):
                 "Experience updated successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#experience")
 
         messages.error(
             request,
@@ -501,7 +521,7 @@ def experience_delete(request, pk):
             "Experience deleted successfully."
         )
 
-    return redirect("candidate:profile")
+    return redirect(f"{reverse('candidate:profile')}#experience")
 
 
 @login_required(login_url="accounts:login")
@@ -529,7 +549,7 @@ def skill_add(request):
                 "Skill added successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#skills")
 
         messages.error(
             request,
@@ -584,7 +604,7 @@ def skill_edit(request, pk):
                 "Skill updated successfully."
             )
 
-            return redirect("candidate:profile")
+            return redirect(f"{reverse('candidate:profile')}#skills")
 
         messages.error(
             request,
@@ -635,4 +655,575 @@ def skill_delete(request, pk):
             "Skill deleted successfully."
         )
 
-    return redirect("candidate:profile")
+    return redirect(f"{reverse('candidate:profile')}#skills")
+
+
+@login_required(login_url="accounts:login")
+def project_add(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        form = ProjectForm(
+            request.POST,
+            request.FILES
+        )
+
+        if form.is_valid():
+
+            project = form.save(commit=False)
+
+            project.profile = profile
+
+            project.save()
+
+            messages.success(
+                request,
+                "Project added successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#projects")
+
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
+
+    else:
+
+        form = ProjectForm()
+
+    context = {
+
+        "form": form,
+        "profile": profile,
+
+    }
+
+    return render(
+        request,
+        "candidate/profile/project-add.html",
+        context
+    )
+
+
+@login_required(login_url="accounts:login")
+def project_edit(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    project = get_object_or_404(
+        Project,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        form = ProjectForm(
+            request.POST,
+            request.FILES,
+            instance=project
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Project updated successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#projects")
+
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
+
+    else:
+
+        form = ProjectForm(
+            instance=project
+        )
+
+    context = {
+
+        "form": form,
+        "profile": profile,
+        "project": project,
+
+    }
+
+    return render(
+        request,
+        "candidate/profile/project-edit.html",
+        context
+    )
+
+
+@login_required(login_url="accounts:login")
+def project_delete(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    project = get_object_or_404(
+        Project,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        project.delete()
+
+        messages.success(
+            request,
+            "Project deleted successfully."
+        )
+
+    return redirect(f"{reverse('candidate:profile')}#projects")
+
+
+@login_required(login_url="accounts:login")
+def certificate_add(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        form = CertificateForm(
+            request.POST,
+            request.FILES
+        )
+
+        if form.is_valid():
+
+            certificate = form.save(commit=False)
+
+            certificate.profile = profile
+
+            certificate.save()
+
+            messages.success(
+                request,
+                "Certificate added successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#certificates")
+
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
+
+    else:
+
+        form = CertificateForm()
+
+    context = {
+
+        "form": form,
+        "profile": profile,
+
+    }
+
+    return render(
+        request,
+        "candidate/profile/certificate-add.html",
+        context
+    )
+
+
+@login_required(login_url="accounts:login")
+def certificate_edit(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    certificate = get_object_or_404(
+        Certificate,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        form = CertificateForm(
+            request.POST,
+            request.FILES,
+            instance=certificate
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Certificate updated successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#certificates")
+
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
+
+    else:
+
+        form = CertificateForm(
+            instance=certificate
+        )
+
+    context = {
+
+        "form": form,
+        "profile": profile,
+        "certificate": certificate,
+
+    }
+
+    return render(
+        request,
+        "candidate/profile/certificate-edit.html",
+        context
+    )
+
+
+@login_required(login_url="accounts:login")
+def certificate_delete(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    certificate = get_object_or_404(
+        Certificate,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        certificate.delete()
+
+        messages.success(
+            request,
+            "Certificate deleted successfully."
+        )
+
+    return redirect(f"{reverse('candidate:profile')}#certificates")
+
+
+@login_required(login_url="accounts:login")
+def language_add(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        form = LanguageForm(request.POST)
+
+        if form.is_valid():
+
+            language = form.save(commit=False)
+
+            language.profile = profile
+
+            language.save()
+
+            messages.success(
+                request,
+                "Language added successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#languages")
+
+    else:
+
+        form = LanguageForm()
+
+    return render(
+        request,
+        "candidate/profile/language-add.html",
+        {
+            "form": form,
+            "profile": profile,
+        }
+    )
+
+
+@login_required(login_url="accounts:login")
+def language_edit(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    language = get_object_or_404(
+        Language,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        form = LanguageForm(
+            request.POST,
+            instance=language
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Language updated successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#languages")
+
+    else:
+
+        form = LanguageForm(instance=language)
+
+    return render(
+        request,
+        "candidate/profile/language-edit.html",
+        {
+            "form": form,
+            "profile": profile,
+            "language": language,
+        }
+    )
+
+
+@login_required(login_url="accounts:login")
+def language_delete(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    language = get_object_or_404(
+        Language,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        language.delete()
+
+        messages.success(
+            request,
+            "Language deleted successfully."
+        )
+
+    return redirect(f"{reverse('candidate:profile')}#languages")
+
+
+
+@login_required(login_url="accounts:login")
+def social_links(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    social, created = SocialLink.objects.get_or_create(
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        form = SocialLinkForm(
+            request.POST,
+            instance=social
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Social links updated successfully."
+            )
+
+            return redirect(
+                f"{reverse('candidate:profile')}#social-links"
+            )
+
+    else:
+
+        form = SocialLinkForm(
+            instance=social
+        )
+
+    return render(
+        request,
+        "candidate/profile/social-links.html",
+        {
+            "form": form,
+            "profile": profile,
+        }
+    )
+    
+@login_required(login_url="accounts:login")
+def social_add(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    social = SocialLink.objects.filter(
+        profile=profile
+    ).first()
+
+    if social:
+
+        return redirect(
+            "candidate:social_edit",
+            pk=social.pk
+        )
+
+    if request.method == "POST":
+
+        form = SocialLinkForm(request.POST)
+
+        if form.is_valid():
+
+            social = form.save(commit=False)
+
+            social.profile = profile
+
+            social.save()
+
+            messages.success(
+                request,
+                "Social links added successfully."
+            )
+
+            return redirect(
+                f"{reverse('candidate:profile')}#social-links"
+            )
+
+    else:
+
+        form = SocialLinkForm()
+
+    return render(
+        request,
+        "candidate/profile/social-add.html",
+        {
+            "form": form,
+            "profile": profile,
+        }
+    )
+
+
+@login_required(login_url="accounts:login")
+def social_edit(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    social = get_object_or_404(
+        SocialLink,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        form = SocialLinkForm(
+            request.POST,
+            instance=social
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Social links updated successfully."
+            )
+
+            return redirect(
+                f"{reverse('candidate:profile')}#social-links"
+            )
+
+    else:
+
+        form = SocialLinkForm(
+            instance=social
+        )
+
+    return render(
+        request,
+        "candidate/profile/social-edit.html",
+        {
+            "form": form,
+            "profile": profile,
+            "social": social,
+        }
+    )
+
+
+@login_required(login_url="accounts:login")
+def social_delete(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    social = get_object_or_404(
+        SocialLink,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        social.delete()
+
+        messages.success(
+            request,
+            "Social links deleted successfully."
+        )
+
+    return redirect(
+        f"{reverse('candidate:profile')}#social-links"
+    )

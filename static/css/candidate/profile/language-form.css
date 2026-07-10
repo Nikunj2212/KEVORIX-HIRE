@@ -3,7 +3,7 @@
    Experience Form
 ========================================================== */
 
-.skill-page{
+.language-page{
 
     max-width:1100px;
 
@@ -65,7 +65,7 @@
 
 }
 
-.skill-card{
+.language-card{
 
     background:var(--card-bg);
 
@@ -79,7 +79,7 @@
 
 }
 
-[data-theme="dark"] .skill-card{
+[data-theme="dark"] .language-card{
 
     box-shadow:0 10px 35px rgba(0,0,0,.35);
 

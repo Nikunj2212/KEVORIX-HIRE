@@ -21,5 +21,17 @@ urlpatterns = [
     path("profile/skill/add/", views.skill_add, name="skill_add"),
     path("profile/skill/<int:pk>/edit/", views.skill_edit, name="skill_edit"),
     path("profile/skill/<int:pk>/delete/", views.skill_delete, name="skill_delete"),
+    path("profile/project/add/", views.project_add, name="project_add"),
+    path("profile/project/<int:pk>/edit/", views.project_edit, name="project_edit"),
+    path("profile/project/<int:pk>/delete/", views.project_delete, name="project_delete"),
+    path("profile/certificate/add/", views.certificate_add, name="certificate_add"),
+    path("profile/certificate/<int:pk>/edit/", views.certificate_edit, name="certificate_edit"),
+    path("profile/certificate/<int:pk>/delete/", views.certificate_delete, name="certificate_delete"),
+    path("profile/language/add/", views.language_add, name="language_add"),
+    path("profile/language/<int:pk>/edit/", views.language_edit, name="language_edit"),
+    path("profile/language/<int:pk>/delete/", views.language_delete, name="language_delete"),
+    path("profile/social/add/", views.social_add, name="social_add"),
+    path("profile/social/<int:pk>/edit/", views.social_edit, name="social_edit"),
+    path("profile/social/<int:pk>/delete/", views.social_delete, name="social_delete"),
 
 ]

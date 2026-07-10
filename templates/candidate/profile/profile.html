@@ -90,7 +90,7 @@ My Profile | KEVORIX Hire
      PROFILE STATISTICS
 ===================================== -->
 
-<section class="profile-stats">
+<section id="profile" class="profile-stats">
 
     <div class="profile-stats-grid">
 
@@ -142,7 +142,7 @@ My Profile | KEVORIX Hire
      PERSONAL INFORMATION
 ===================================== -->
 
-<section class="personal-section">
+<section id="personal" class="personal-section">
 
     <div class="section-header">
 
@@ -216,7 +216,7 @@ My Profile | KEVORIX Hire
      ABOUT ME
 ===================================== -->
 
-<section class="about-section">
+<section id="about" class="about-section">
 
     <div class="section-header">
 
@@ -252,7 +252,7 @@ My Profile | KEVORIX Hire
      EDUCATION
 ===================================== -->
 
-<section class="education-section">
+<section id="education" class="education-section">
 
     <div class="education-header">
 
@@ -382,7 +382,7 @@ My Profile | KEVORIX Hire
      EXPERIENCE
 ===================================== -->
 
-<section class="experience-section">
+<section id="experience" class="experience-section">
 
     <div class="experience-header">
 
@@ -511,7 +511,7 @@ My Profile | KEVORIX Hire
      SKILLS
 ===================================== -->
 
-<section class="skills-section">
+<section id="skills" class="skills-section">
 
     <div class="skills-header">
 
@@ -618,116 +618,188 @@ My Profile | KEVORIX Hire
      PROJECTS
 ===================================== -->
 
-<section class="projects-section">
+<section id="projects" class="projects-section">
 
     <div class="projects-header">
 
         <h2>Projects</h2>
 
-        <button class="edit-link">
+        {% if projects %}
 
-            <i class="bi bi-pencil-square"></i>
+        <a href="{% url 'candidate:project_add' %}" class="edit-link">
 
-            Edit
+            <i class="bi bi-plus-circle"></i>
 
-        </button>
+            Add Project
+
+        </a>
+
+        {% endif %}
 
     </div>
+
+    {% if projects %}
 
     <div class="projects-grid">
 
+        {% for project in projects %}
+
         <div class="project-card">
 
-            <h3>KEVORIX Hire</h3>
+            {% if project.thumbnail %}
 
-            <p>
-                AI-powered recruitment platform with Resume Builder,
-                ATS Resume Score, AI Job Matching, Company Dashboard
-                and Candidate Dashboard.
-            </p>
+            <img src="{{ project.thumbnail.url }}"
+                 alt="{{ project.title }}"
+                 class="project-image">
 
-            <div class="project-tags">
+            {% endif %}
 
-                <span>Django</span>
+            <div class="project-content">
 
-                <span>Python</span>
+                <div class="project-top">
 
-                <span>MySQL</span>
+                    <h3>{{ project.title }}</h3>
 
-                <span>AI</span>
+                    {% if project.featured %}
+
+                    <span class="featured-badge">
+
+                        <i class="bi bi-star-fill"></i>
+
+                        Featured
+
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+                <p>{{ project.short_description }}</p>
+
+                <div class="project-tags">
+
+                    <span>{{ project.technologies }}</span>
+
+                </div>
+
+                <div class="project-links">
+
+                    {% if project.github_url %}
+
+                    <a href="{{ project.github_url }}" target="_blank">
+
+                        <i class="bi bi-github"></i>
+
+                        GitHub
+
+                    </a>
+
+                    {% endif %}
+
+                    {% if project.live_url %}
+
+                    <a href="{{ project.live_url }}" target="_blank">
+
+                        <i class="bi bi-box-arrow-up-right"></i>
+
+                        Live Demo
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="project-actions">
+
+                    <a href="{% url 'candidate:project_edit' project.pk %}" class="action-btn">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+
+                    <form method="POST"
+                          action="{% url 'candidate:project_delete' project.pk %}">
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="action-btn delete-btn"
+                            onclick="return confirm('Are you sure you want to delete this project?');">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
 
             </div>
 
         </div>
 
-        <div class="project-card">
-
-            <h3>Luxuria Ecommerce</h3>
-
-            <p>
-                Luxury ecommerce platform with payment integration,
-                wishlist, dashboard, analytics and REST API.
-            </p>
-
-            <div class="project-tags">
-
-                <span>Django</span>
-
-                <span>REST API</span>
-
-                <span>Bootstrap</span>
-
-                <span>MySQL</span>
-
-            </div>
-
-        </div>
+        {% endfor %}
 
     </div>
 
-</section>
+    {% else %}
 
+    <div class="empty-state">
+
+        <i class="bi bi-kanban"></i>
+
+        <h3>No Projects Added</h3>
+
+        <p>
+
+            Showcase your best projects and portfolio work.
+
+        </p>
+
+        <a href="{% url 'candidate:project_add' %}" class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Add Project
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
 <!-- =====================================
      CERTIFICATES
 ===================================== -->
 
-<section class="certificates-section">
+<section id="certificates" class="certificates-section">
 
     <div class="certificates-header">
 
         <h2>Certificates</h2>
 
-        <button class="edit-link">
+        {% if certificates %}
 
-            <i class="bi bi-pencil-square"></i>
+        <a href="{% url 'candidate:certificate_add' %}" class="edit-link">
 
-            Edit
+            <i class="bi bi-plus-circle"></i>
 
-        </button>
+            Add Certificate
+
+        </a>
+
+        {% endif %}
 
     </div>
+
+    {% if certificates %}
 
     <div class="certificates-grid">
 
-        <div class="certificate-card">
-
-            <div class="certificate-icon">
-
-                <i class="bi bi-award-fill"></i>
-
-            </div>
-
-            <div class="certificate-content">
-
-                <h3>Python Django Internship</h3>
-
-                <p>Axis Technolabs</p>
-
-                <span>2025</span>
-
-            </div>
-
-        </div>
+        {% for certificate in certificates %}
 
         <div class="certificate-card">
 
@@ -739,185 +811,395 @@ My Profile | KEVORIX Hire
 
             <div class="certificate-content">
 
-                <h3>Python Django Internship</h3>
+                <h3>{{ certificate.certificate_name }}</h3>
 
-                <p>Elysial Global Services Pvt. Ltd.</p>
+                <p>{{ certificate.issuing_organization }}</p>
 
-                <span>2025</span>
+                <span>{{ certificate.issue_date|date:"Y" }}</span>
+
+                <div class="certificate-links">
+
+                    {% if certificate.credential_url %}
+
+                    <a href="{{ certificate.credential_url }}" target="_blank">
+
+                        <i class="bi bi-link-45deg"></i>
+
+                        Credential
+
+                    </a>
+
+                    {% endif %}
+
+                    {% if certificate.certificate_file %}
+
+                    <a href="{{ certificate.certificate_file.url }}" target="_blank">
+
+                        <i class="bi bi-file-earmark-pdf"></i>
+
+                        Certificate
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="certificate-actions">
+
+                    <a href="{% url 'candidate:certificate_edit' certificate.pk %}" class="action-btn">
+
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+
+                    <form method="POST"
+                          action="{% url 'candidate:certificate_delete' certificate.pk %}">
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="action-btn delete-btn"
+                            onclick="return confirm('Delete this certificate?');">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
 
             </div>
 
         </div>
 
-        <div class="certificate-card">
-
-            <div class="certificate-icon">
-
-                <i class="bi bi-award-fill"></i>
-
-            </div>
-
-            <div class="certificate-content">
-
-                <h3>Python Django Internship</h3>
-
-                <p>Sparks To Ideas</p>
-
-                <span>2024</span>
-
-            </div>
-
-        </div>
+        {% endfor %}
 
     </div>
 
-</section>
+    {% else %}
 
+    <div class="empty-state">
+
+        <i class="bi bi-award"></i>
+
+        <h3>No Certificates Added</h3>
+
+        <p>
+
+            Showcase your certifications to increase recruiter trust.
+
+        </p>
+
+        <a href="{% url 'candidate:certificate_add' %}" class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Add Certificate
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
 <!-- =====================================
      LANGUAGES
 ===================================== -->
 
-<section class="languages-section">
+<section id="languages" class="languages-section">
 
     <div class="languages-header">
 
         <h2>Languages</h2>
 
-        <button class="edit-link">
+        {% if languages %}
 
-            <i class="bi bi-pencil-square"></i>
+        <a href="{% url 'candidate:language_add' %}" class="edit-link">
 
-            Edit
+            <i class="bi bi-plus-circle"></i>
 
-        </button>
+            Add Language
+
+        </a>
+
+        {% endif %}
 
     </div>
+
+    {% if languages %}
 
     <div class="languages-card">
 
-        <div class="language-item">
-
-            <div class="language-info">
-
-                <h3>Gujarati</h3>
-
-                <p>Native</p>
-
-            </div>
-
-            <span class="language-level expert">Expert</span>
-
-        </div>
+        {% for language in languages %}
 
         <div class="language-item">
 
             <div class="language-info">
 
-                <h3>Hindi</h3>
+                <h3>{{ language.language }}</h3>
 
-                <p>Professional Working</p>
-
-            </div>
-
-            <span class="language-level advanced">Advanced</span>
-
-        </div>
-
-        <div class="language-item">
-
-            <div class="language-info">
-
-                <h3>English</h3>
-
-                <p>Professional Working</p>
+                <p>{{ language.get_proficiency_display }}</p>
 
             </div>
 
-            <span class="language-level intermediate">Intermediate</span>
+            <div class="language-actions">
+
+                <span class="language-level">
+
+                    {{ language.get_proficiency_display }}
+
+                </span>
+
+                <a href="{% url 'candidate:language_edit' language.pk %}" class="action-btn">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                </a>
+
+                <form method="POST"
+                      action="{% url 'candidate:language_delete' language.pk %}">
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="action-btn delete-btn"
+                        onclick="return confirm('Delete this language?');">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
+
+        {% endfor %}
 
     </div>
 
-</section>
+    {% else %}
 
+    <div class="empty-state">
+
+        <i class="bi bi-translate"></i>
+
+        <h3>No Languages Added</h3>
+
+        <p>
+
+            Add the languages you speak to strengthen your profile.
+
+        </p>
+
+        <a href="{% url 'candidate:language_add' %}" class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Add Language
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</section>
 <!-- =====================================
      SOCIAL LINKS
 ===================================== -->
 
-<section class="social-section">
+<section id="social-links" class="social-section">
 
     <div class="social-header">
 
         <h2>Social Links</h2>
 
-        <button class="edit-link">
+        <a href="{% if social_links %}{% url 'candidate:social_edit' social_links.pk %}{% else %}{% url 'candidate:social_add' %}{% endif %}" class="edit-link">
 
             <i class="bi bi-pencil-square"></i>
 
-            Edit
+            {% if social_links %}Edit{% else %}Add{% endif %}
+
+        </a>
+        {% if social_links %}
+
+        <form method="POST"
+            action="{% url 'candidate:social_delete' social_links.pk %}"
+            style="display:inline;">
+
+        {% csrf_token %}
+
+        <button
+            type="submit"
+            class="action-btn delete-btn"
+            onclick="return confirm('Delete all social links?');">
+
+            <i class="bi bi-trash"></i>
 
         </button>
+
+        </form>
+
+        {% endif %}
 
     </div>
 
     <div class="social-card">
 
-        <div class="social-item">
+        {% if social_links %}
 
-            <i class="bi bi-linkedin"></i>
+            {% if social_links.linkedin %}
+            <div class="social-item">
+                <i class="bi bi-linkedin"></i>
+                <div class="social-info">
+                    <h3>LinkedIn</h3>
+                    <a href="{{ social_links.linkedin }}" target="_blank">
+                        {{ social_links.linkedin }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
 
-            <div class="social-info">
+            {% if social_links.github %}
+            <div class="social-item">
+                <i class="bi bi-github"></i>
+                <div class="social-info">
+                    <h3>GitHub</h3>
+                    <a href="{{ social_links.github }}" target="_blank">
+                        {{ social_links.github }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
 
-                <h3>LinkedIn</h3>
+            {% if social_links.portfolio %}
+            <div class="social-item">
+                <i class="bi bi-globe"></i>
+                <div class="social-info">
+                    <h3>Portfolio</h3>
+                    <a href="{{ social_links.portfolio }}" target="_blank">
+                        {{ social_links.portfolio }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
 
-                <a href="#">linkedin.com/in/nikunjpanchal</a>
+            {% if social_links.leetcode %}
+            <div class="social-item">
+                <i class="bi bi-code-slash"></i>
+                <div class="social-info">
+                    <h3>LeetCode</h3>
+                    <a href="{{ social_links.leetcode }}" target="_blank">
+                        {{ social_links.leetcode }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if social_links.hackerrank %}
+            <div class="social-item">
+                <i class="bi bi-terminal"></i>
+                <div class="social-info">
+                    <h3>HackerRank</h3>
+                    <a href="{{ social_links.hackerrank }}" target="_blank">
+                        {{ social_links.hackerrank }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if social_links.codechef %}
+            <div class="social-item">
+                <i class="bi bi-cup-hot"></i>
+                <div class="social-info">
+                    <h3>CodeChef</h3>
+                    <a href="{{ social_links.codechef }}" target="_blank">
+                        {{ social_links.codechef }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if social_links.codeforces %}
+            <div class="social-item">
+                <i class="bi bi-lightning-charge"></i>
+                <div class="social-info">
+                    <h3>Codeforces</h3>
+                    <a href="{{ social_links.codeforces }}" target="_blank">
+                        {{ social_links.codeforces }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if social_links.kaggle %}
+            <div class="social-item">
+                <i class="bi bi-bar-chart"></i>
+                <div class="social-info">
+                    <h3>Kaggle</h3>
+                    <a href="{{ social_links.kaggle }}" target="_blank">
+                        {{ social_links.kaggle }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if social_links.stackoverflow %}
+            <div class="social-item">
+                <i class="bi bi-stack"></i>
+                <div class="social-info">
+                    <h3>Stack Overflow</h3>
+                    <a href="{{ social_links.stackoverflow }}" target="_blank">
+                        {{ social_links.stackoverflow }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if social_links.medium %}
+            <div class="social-item">
+                <i class="bi bi-journal-text"></i>
+                <div class="social-info">
+                    <h3>Medium</h3>
+                    <a href="{{ social_links.medium }}" target="_blank">
+                        {{ social_links.medium }}
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <i class="bi bi-share"></i>
+
+                <h3>No Social Links Added</h3>
+
+                <p>
+
+                    Add your professional profiles to strengthen your profile.
+
+                </p>
+
+                <a href="{% url 'candidate:social_add' %}" class="btn btn-primary">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Add Social Links
+
+                </a>
 
             </div>
 
-        </div>
-
-        <div class="social-item">
-
-            <i class="bi bi-github"></i>
-
-            <div class="social-info">
-
-                <h3>GitHub</h3>
-
-                <a href="#">github.com/nikunjpanchal</a>
-
-            </div>
-
-        </div>
-
-        <div class="social-item">
-
-            <i class="bi bi-globe"></i>
-
-            <div class="social-info">
-
-                <h3>Portfolio</h3>
-
-                <a href="#">www.nikunjportfolio.com</a>
-
-            </div>
-
-        </div>
-
-        <div class="social-item">
-
-            <i class="bi bi-envelope-fill"></i>
-
-            <div class="social-info">
-
-                <h3>Email</h3>
-
-                <a href="#">nikunj@gmail.com</a>
-
-            </div>
-
-        </div>
+        {% endif %}
 
     </div>
 
@@ -927,7 +1209,7 @@ My Profile | KEVORIX Hire
      RESUME
 ===================================== -->
 
-<section class="resume-section">
+<section id="resume" class="resume-section">
 
     <div class="resume-header">
 

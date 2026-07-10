@@ -1,0 +1,100 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}Add Language | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/language-form.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="language-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+            <h1>Add Language</h1>
+
+            <p>
+
+                Add languages you can communicate in professionally.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="language-card">
+
+        <div class="card-header">
+
+            <h2>Language Details</h2>
+
+            <p>
+
+                Help recruiters understand your communication skills.
+
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Language</label>
+
+                    {{ form.language }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Proficiency</label>
+
+                    {{ form.proficiency }}
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Save Language
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/candidate/profile/language-form.js' %}"></script>
+
+{% endblock %}

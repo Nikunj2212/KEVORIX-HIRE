@@ -61,23 +61,63 @@ class CandidateProfile(models.Model):
         blank=True
     )
 
-    years_of_experience = models.PositiveIntegerField(
-        default=0
-    )
+    years_of_experience = models.PositiveIntegerField(default=0)
 
     website = models.URLField(blank=True)
 
-    profile_completion = models.PositiveIntegerField(
-        default=0
-    )
+    profile_completion = models.PositiveIntegerField(default=0)
 
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
+    created_at = models.DateTimeField(auto_now_add=True)
 
-    updated_at = models.DateTimeField(
-        auto_now=True
-    )
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_default_cover(self):
+
+        if self.cover_photo:
+            return self.cover_photo.url
+
+        job = (self.current_job_title or "").lower()
+
+        mapping = [
+            ("full stack", "fullstack.webp"),
+            ("fullstack", "fullstack.webp"),
+
+            ("frontend", "frontend.webp"),
+            ("react", "frontend.webp"),
+            ("angular", "frontend.webp"),
+            ("vue", "frontend.webp"),
+
+            ("backend", "backend.webp"),
+            ("django", "developer.webp"),
+            ("python", "developer.webp"),
+            ("developer", "developer.webp"),
+
+            ("ai", "ai.webp"),
+            ("machine learning", "ai.webp"),
+            ("artificial intelligence", "ai.webp"),
+
+            ("data scientist", "data.webp"),
+            ("data analyst", "data.webp"),
+            ("data", "data.webp"),
+
+            ("ui", "designer.webp"),
+            ("ux", "designer.webp"),
+            ("designer", "designer.webp"),
+
+            ("devops", "devops.webp"),
+            ("docker", "devops.webp"),
+            ("kubernetes", "devops.webp"),
+
+            ("android", "mobile.webp"),
+            ("flutter", "mobile.webp"),
+            ("react native", "mobile.webp"),
+        ]
+
+        for keyword, image in mapping:
+            if keyword in job:
+                return f"/static/images/covers/{image}"
+
+        return "/static/images/covers/default.webp"
 
     def __str__(self):
         return self.user.get_full_name() or self.user.email
@@ -529,6 +569,31 @@ class SocialLink(models.Model):
 
     medium = models.URLField(
         blank=True
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    def __str__(self):
+
+        return self.profile.user.get_full_name()
+    
+    
+class Resume(models.Model):
+
+    profile = models.OneToOneField(
+        CandidateProfile,
+        on_delete=models.CASCADE,
+        related_name="resume"
+    )
+
+    resume = models.FileField(
+        upload_to="candidate/resumes/"
+    )
+
+    uploaded_at = models.DateTimeField(
+        auto_now_add=True
     )
 
     updated_at = models.DateTimeField(

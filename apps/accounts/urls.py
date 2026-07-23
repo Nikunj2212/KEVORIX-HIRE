@@ -15,8 +15,8 @@ urlpatterns = [
     path("forgot-password/verify-otp/", views.forgot_password_verify_otp, name="forgot_password_verify_otp"),
 
     path("reset-password/", views.reset_password, name="reset_password"),
-    
     path("logout/", views.logout_view, name="logout"),
+    path("access-denied/", views.access_denied, name="access_denied"),
         
 
 ]

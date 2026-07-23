@@ -47,8 +47,8 @@
 
         </div>
 
-        <form method="POST" novalidate>
-
+        <form method="POST" enctype="multipart/form-data" novalidate>
+            
             {% csrf_token %}
 
             <div class="form-grid">
@@ -225,6 +225,53 @@
                         </div>
 
                     {% endif %}
+
+                </div>
+                <!-- Nationality -->
+
+                <div class="form-group">
+
+                    <label for="{{ profile_form.nationality.id_for_label }}">
+                        Nationality
+                    </label>
+
+                    {{ form.nationality }}
+
+                </div>
+
+                <!-- City -->
+
+                <div class="form-group">
+
+                    <label for="{{ profile_form.city.id_for_label }}">
+                        City
+                    </label>
+
+                    {{ form.city }}
+
+                </div>
+
+                <!-- State -->
+
+                <div class="form-group">
+
+                    <label for="{{ profile_form.state.id_for_label }}">
+                        State
+                    </label>
+
+                    {{ form.state }}
+
+                </div>
+
+                <!-- Country -->
+
+                <div class="form-group">
+
+                    <label for="{{ profile_form.country.id_for_label }}">
+                        Country
+                    </label>
+
+                    {{ form.country }}
 
                 </div>
                 <div class="form-actions">

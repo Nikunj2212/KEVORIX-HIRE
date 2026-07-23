@@ -1,0 +1,110 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}Update Resume | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/resume-form.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="resume-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+            <h1>Update Resume</h1>
+
+            <p>
+
+                Replace your resume with the latest version.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="resume-card">
+
+        <div class="card-header">
+
+            <h2>Resume</h2>
+
+            <p>
+
+                Upload a new PDF to replace your current resume.
+
+            </p>
+
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                {% if resume.resume %}
+
+                <div class="form-group full-width">
+
+                    <label>Current Resume</label>
+
+                    <a href="{{ resume.resume.url }}" target="_blank" class="resume-preview">
+
+                        <i class="bi bi-file-earmark-pdf-fill"></i>
+
+                        View Current Resume
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+                <div class="form-group full-width">
+
+                    <label>Replace Resume</label>
+
+                    {{ form.resume }}
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Update Resume
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/candidate/profile/resume-form.js' %}"></script>
+
+{% endblock %}

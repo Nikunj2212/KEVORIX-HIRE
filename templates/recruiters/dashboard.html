@@ -1,0 +1,98 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Recruiter Dashboard | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/recruiters/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-section">
+
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <h1>Welcome, {{ recruiter.user.get_full_name|default:recruiter.user.email }}</h1>
+
+                <p>{{ company.name }}</p>
+
+            </div>
+
+            <a href="{% url 'recruiters:company_profile' %}" class="btn-primary">
+                View Company
+            </a>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3>Total Jobs</h3>
+
+                <h2>{{ total_jobs }}</h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Active Jobs</h3>
+
+                <h2>{{ active_jobs }}</h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Applicants</h3>
+
+                <h2>{{ total_applicants }}</h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Interviews</h3>
+
+                <h2>{{ scheduled_interviews }}</h2>
+
+            </div>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h2>Quick Actions</h2>
+
+            <div class="action-grid">
+
+                <a href="#" class="action-card">
+                    Post New Job
+                </a>
+
+                <a href="#" class="action-card">
+                    View Applicants
+                </a>
+
+                <a href="{% url 'recruiters:edit_company' %}" class="action-card">
+                    Edit Company
+                </a>
+
+                <a href="#" class="action-card">
+                    Schedule Interviews
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

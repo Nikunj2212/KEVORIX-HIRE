@@ -22,7 +22,43 @@ My Profile | KEVORIX Hire
 
     <!-- Banner -->
 
-    <div class="profile-banner"></div>
+    <div class="profile-banner">
+
+        <img
+        src="{{ profile.get_default_cover }}"
+        alt="Cover"
+        class="cover-image">
+
+        <div class="cover-overlay">
+
+            <a href="{% url 'candidate:cover_photo' %}" class="cover-btn">
+
+                <i class="bi bi-camera-fill"></i>
+
+                Change Cover
+
+            </a>
+
+            {% if profile.cover_photo %}
+
+            <form method="POST"
+                action="{% url 'candidate:remove_cover_photo' %}">
+
+                {% csrf_token %}
+
+                <button type="submit" class="cover-remove-btn">
+
+                    <i class="bi bi-trash"></i>
+
+                </button>
+
+            </form>
+
+            {% endif %}
+
+        </div>
+
+    </div>
 
     <!-- Profile Header -->
 
@@ -32,15 +68,48 @@ My Profile | KEVORIX Hire
 
             <div class="profile-avatar">
 
-               {% if profile.profile_photo %}
+                {% if profile.profile_photo %}
 
                     <img src="{{ profile.profile_photo.url }}" alt="Profile">
 
-               {% else %}
+                {% else %}
 
-                    {{ profile.user.first_name|first|upper }}
+                    <span class="avatar-text">
 
-               {% endif %}
+                        {{ profile.user.first_name|first|upper }}
+
+                    </span>
+
+                {% endif %}
+
+                <div class="avatar-overlay">
+
+                    <a href="{% url 'candidate:profile_photo' %}" class="avatar-btn">
+
+                        <i class="bi bi-camera-fill"></i>
+
+                        Change Photo
+
+                    </a>
+
+                    {% if profile.profile_photo %}
+
+                    <form method="POST"
+                        action="{% url 'candidate:remove_profile_photo' %}">
+
+                        {% csrf_token %}
+
+                        <button type="submit" class="avatar-btn avatar-remove-btn">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                </div>
 
             </div>
 
@@ -70,10 +139,25 @@ My Profile | KEVORIX Hire
 
         <div class="profile-right">
 
-            <button class="btn-outline">
+            <a href="{% url 'candidate:personal_edit' %}" class="btn-outline">
                 <i class="bi bi-pencil-square"></i>
                 Edit Profile
+            </a>
+
+            <form
+            method="POST"
+            action="{% url 'candidate:generate_ai_cover' %}"
+            style="display:inline-block;"
+        >
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="cover-btn"
+            >
+                ✨ Generate AI Cover
             </button>
+        </form>
 
         </div>
 
@@ -98,9 +182,18 @@ My Profile | KEVORIX Hire
 
             <i class="bi bi-person-check-fill"></i>
 
-            <h3>78%</h3>
+            <h3>{{ profile.profile_completion }}%</h3>
 
             <p>Profile Completion</p>
+
+            <div class="progress">
+
+                <div class="progress-fill"
+                    style="width: {{ profile.profile_completion }}%;">
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -910,107 +1003,107 @@ My Profile | KEVORIX Hire
      LANGUAGES
 ===================================== -->
 
-<section id="languages" class="languages-section">
+    <section id="languages" class="languages-section">
 
-    <div class="languages-header">
+        <div class="languages-header">
 
-        <h2>Languages</h2>
+            <h2>Languages</h2>
 
-        {% if languages %}
+            {% if languages %}
 
-        <a href="{% url 'candidate:language_add' %}" class="edit-link">
+            <a href="{% url 'candidate:language_add' %}" class="edit-link">
 
-            <i class="bi bi-plus-circle"></i>
+                <i class="bi bi-plus-circle"></i>
 
-            Add Language
+                Add Language
 
-        </a>
+            </a>
 
-        {% endif %}
-
-    </div>
-
-    {% if languages %}
-
-    <div class="languages-card">
-
-        {% for language in languages %}
-
-        <div class="language-item">
-
-            <div class="language-info">
-
-                <h3>{{ language.language }}</h3>
-
-                <p>{{ language.get_proficiency_display }}</p>
-
-            </div>
-
-            <div class="language-actions">
-
-                <span class="language-level">
-
-                    {{ language.get_proficiency_display }}
-
-                </span>
-
-                <a href="{% url 'candidate:language_edit' language.pk %}" class="action-btn">
-
-                    <i class="bi bi-pencil-square"></i>
-
-                </a>
-
-                <form method="POST"
-                      action="{% url 'candidate:language_delete' language.pk %}">
-
-                    {% csrf_token %}
-
-                    <button
-                        type="submit"
-                        class="action-btn delete-btn"
-                        onclick="return confirm('Delete this language?');">
-
-                        <i class="bi bi-trash"></i>
-
-                    </button>
-
-                </form>
-
-            </div>
+            {% endif %}
 
         </div>
 
-        {% endfor %}
+        {% if languages %}
 
-    </div>
+        <div class="languages-card">
 
-    {% else %}
+            {% for language in languages %}
 
-    <div class="empty-state">
+            <div class="language-item">
 
-        <i class="bi bi-translate"></i>
+                <div class="language-info">
 
-        <h3>No Languages Added</h3>
+                    <h3>{{ language.language }}</h3>
 
-        <p>
+                    <p>{{ language.get_proficiency_display }}</p>
 
-            Add the languages you speak to strengthen your profile.
+                </div>
 
-        </p>
+                <div class="language-actions">
 
-        <a href="{% url 'candidate:language_add' %}" class="btn btn-primary">
+                    <span class="language-level">
 
-            <i class="bi bi-plus-circle"></i>
+                        {{ language.get_proficiency_display }}
 
-            Add Language
+                    </span>
 
-        </a>
+                    <a href="{% url 'candidate:language_edit' language.pk %}" class="action-btn">
 
-    </div>
+                        <i class="bi bi-pencil-square"></i>
 
-    {% endif %}
+                    </a>
 
-</section>
+                    <form method="POST"
+                        action="{% url 'candidate:language_delete' language.pk %}">
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="action-btn delete-btn"
+                            onclick="return confirm('Delete this language?');">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <i class="bi bi-translate"></i>
+
+            <h3>No Languages Added</h3>
+
+            <p>
+
+                Add the languages you speak to strengthen your profile.
+
+            </p>
+
+            <a href="{% url 'candidate:language_add' %}" class="btn btn-primary">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Add Language
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
 <!-- =====================================
      SOCIAL LINKS
 ===================================== -->
@@ -1021,33 +1114,38 @@ My Profile | KEVORIX Hire
 
         <h2>Social Links</h2>
 
-        <a href="{% if social_links %}{% url 'candidate:social_edit' social_links.pk %}{% else %}{% url 'candidate:social_add' %}{% endif %}" class="edit-link">
+        <div class="header-actions">
 
-            <i class="bi bi-pencil-square"></i>
+            <a href="{% if social_links %}{% url 'candidate:social_edit' social_links.pk %}{% else %}{% url 'candidate:social_add' %}{% endif %}"
+            class="edit-link">
 
-            {% if social_links %}Edit{% else %}Add{% endif %}
+                <i class="bi bi-pencil-square"></i>
 
-        </a>
-        {% if social_links %}
+                {% if social_links %}Edit{% else %}Add{% endif %}
 
-        <form method="POST"
-            action="{% url 'candidate:social_delete' social_links.pk %}"
-            style="display:inline;">
+            </a>
 
-        {% csrf_token %}
+            {% if social_links %}
 
-        <button
-            type="submit"
-            class="action-btn delete-btn"
-            onclick="return confirm('Delete all social links?');">
+            <form method="POST"
+                action="{% url 'candidate:social_delete' social_links.pk %}">
 
-            <i class="bi bi-trash"></i>
+                {% csrf_token %}
 
-        </button>
+                <button
+                    type="submit"
+                    class="action-btn delete-btn"
+                    onclick="return confirm('Delete all social links?');">
 
-        </form>
+                    <i class="bi bi-trash"></i>
 
-        {% endif %}
+                </button>
+
+            </form>
+
+            {% endif %}
+
+        </div>
 
     </div>
 
@@ -1215,15 +1313,50 @@ My Profile | KEVORIX Hire
 
         <h2>Resume</h2>
 
-        <a href="#" class="resume-link">
+        {% if resume %}
 
-            Go to My Resume
+        <div class="header-actions">
 
-            <i class="bi bi-arrow-right"></i>
+            <a href="{% url 'candidate:resume_edit' resume.pk %}" class="edit-link">
+
+                <i class="bi bi-pencil-square"></i>
+
+                Edit
+
+            </a>
+
+            <form method="POST"
+                action="{% url 'candidate:resume_delete' resume.pk %}">
+
+                {% csrf_token %}
+
+                <button type="submit"
+                        class="action-btn delete-btn"
+                        onclick="return confirm('Delete Resume?');">
+
+                    <i class="bi bi-trash"></i>
+
+                </button>
+
+            </form>
+
+        </div>
+
+        {% else %}
+
+        <a href="{% url 'candidate:resume_add' %}" class="edit-link">
+
+            <i class="bi bi-plus-circle"></i>
+
+            Upload Resume
 
         </a>
 
+        {% endif %}
+
     </div>
+
+    {% if resume %}
 
     <div class="resume-card">
 
@@ -1243,7 +1376,7 @@ My Profile | KEVORIX Hire
 
             <label>Resume Name</label>
 
-            <span>Nikunj_Panchal_Resume.pdf</span>
+            <span>{{ resume.resume.name|cut:"candidate/resumes/" }}</span>
 
         </div>
 
@@ -1251,19 +1384,67 @@ My Profile | KEVORIX Hire
 
             <label>Last Updated</label>
 
-            <span>15 July 2026</span>
+            <span>{{ resume.updated_at|date:"d M Y" }}</span>
 
         </div>
 
         <div class="resume-item">
 
-            <label>ATS Resume Score</label>
+            <label>Resume File</label>
 
-            <span>86 / 100</span>
+            <div class="resume-actions">
+
+                <a href="{{ resume.resume.url }}"
+                   target="_blank"
+                   class="btn btn-outline-primary">
+
+                    <i class="bi bi-eye"></i>
+
+                    View
+
+                </a>
+
+                <a href="{{ resume.resume.url }}"
+                   download
+                   class="btn btn-primary">
+
+                    <i class="bi bi-download"></i>
+
+                    Download
+
+                </a>
+
+            </div>
 
         </div>
 
     </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <i class="bi bi-file-earmark-pdf"></i>
+
+        <h3>No Resume Uploaded</h3>
+
+        <p>
+
+            Upload your latest resume to improve your profile visibility.
+
+        </p>
+
+        <a href="{% url 'candidate:resume_add' %}" class="btn btn-primary">
+
+            <i class="bi bi-upload"></i>
+
+            Upload Resume
+
+        </a>
+
+    </div>
+
+    {% endif %}
 
 </section>
 

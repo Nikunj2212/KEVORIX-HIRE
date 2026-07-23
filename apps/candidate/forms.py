@@ -2,7 +2,13 @@ from django import forms
 from apps.accounts.models import User
 from .models import CandidateProfile
 from .models import Education
-from .models import CandidateProfile, Education, Experience,Skill,Project,Certificate,Language,SocialLink
+from .models import CandidateProfile, Education, Experience,Skill,Project,Certificate,Language,SocialLink,Resume
+import os
+
+from django import forms
+
+from .models import Resume
+
 
 
 
@@ -98,6 +104,10 @@ class PersonalInformationForm(forms.ModelForm):
             "gender",
             "headline",
             "current_job_title",
+            "city",
+            "state",
+            "country",
+            "nationality",
         ]
 
         widgets = {
@@ -135,138 +145,63 @@ class PersonalInformationForm(forms.ModelForm):
                     "placeholder": "Ex. Software Engineer",
                 }
             ),
-        }
-
-    def __init__(self, *args, **kwargs):
-
-        user = kwargs.pop("user")
-
-        super().__init__(*args, **kwargs)
-
-        self.fields["first_name"].initial = user.first_name
-        self.fields["last_name"].initial = user.last_name
-        self.fields["email"].initial = user.email
-        self.fields["phone"].initial = user.phone
-
-    def clean_phone(self):
-
-        phone = self.cleaned_data["phone"].strip()
-
-        if len(phone) < 10:
-            raise forms.ValidationError(
-                "Phone number must be at least 10 digits."
-            )
-
-        return phone
-
-    def save(self, commit=True):
-
-        profile = super().save(commit=False)
-
-        user = profile.user
-
-        user.first_name = self.cleaned_data["first_name"]
-        user.last_name = self.cleaned_data["last_name"]
-        user.phone = self.cleaned_data["phone"]
-
-        if commit:
-
-            user.save()
-            profile.save()
-
-        return profile
-
-    first_name = forms.CharField(
-        label="First Name",
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Enter first name",
-            }
-        ),
-    )
-
-    last_name = forms.CharField(
-        label="Last Name",
-        max_length=100,
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Enter last name",
-            }
-        ),
-    )
-
-    email = forms.EmailField(
-        label="Email Address",
-        disabled=True,
-        required=False,
-        widget=forms.EmailInput(
-            attrs={
-                "class": "form-control",
-            }
-        ),
-    )
-
-    phone = forms.CharField(
-        label="Phone Number",
-        max_length=20,
-        widget=forms.TextInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Enter phone number",
-            }
-        ),
-    )
-
-    class Meta:
-
-        model = CandidateProfile
-
-        fields = [
-            "date_of_birth",
-            "gender",
-            "headline",
-            "current_job_title",
-        ]
-
-        widgets = {
-
-            "date_of_birth": forms.DateInput(
+            
+            "city": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "type": "date",
+                    "placeholder": "Ahmedabad",
                 }
             ),
 
-            "gender": forms.Select(
-                choices=[
-                    ("", "Select Gender"),
-                    ("Male", "Male"),
-                    ("Female", "Female"),
-                    ("Other", "Other"),
-                    ("Prefer not to say", "Prefer not to say"),
-                ],
+            "state": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                },
-            ),
-
-            "headline": forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "Ex. Python Django Developer",
+                    "placeholder": "Gujarat",
                 }
             ),
 
-            "current_job_title": forms.TextInput(
+            "country": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Ex. Software Engineer",
+                    "placeholder": "India",
                 }
             ),
+
+            "nationality": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Indian",
+                }
+            ),
+            
+            "city": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Ahmedabad",
+                }
+            ),
+
+            "state": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Gujarat",
+                }
+            ),
+
+            "country": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "India",
+                }
+            ),
+
+            "nationality": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Indian",
+                }
+            ),
+            
         }
 
     def __init__(self, *args, **kwargs):
@@ -881,3 +816,62 @@ class SocialLinkForm(forms.ModelForm):
             "medium": forms.URLInput(attrs={"class":"form-control","placeholder":"https://medium.com/@username"}),
 
         }
+        
+
+
+class ResumeForm(forms.ModelForm):
+
+    MAX_FILE_SIZE = 5 * 1024 * 1024
+
+    class Meta:
+
+        model = Resume
+
+        fields = [
+            "resume",
+        ]
+
+        widgets = {
+
+            "resume": forms.FileInput(
+                attrs={
+                    "class": "form-control",
+                    "accept": ".pdf"
+                }
+            ),
+
+        }
+
+    def clean_resume(self):
+
+        resume = self.cleaned_data.get("resume")
+
+        if not resume:
+
+            raise forms.ValidationError(
+                "Please select a resume."
+            )
+
+        extension = os.path.splitext(
+            resume.name
+        )[1].lower()
+
+        if extension != ".pdf":
+
+            raise forms.ValidationError(
+                "Only PDF files are allowed."
+            )
+
+        if resume.size == 0:
+
+            raise forms.ValidationError(
+                "Uploaded PDF is empty."
+            )
+
+        if resume.size > self.MAX_FILE_SIZE:
+
+            raise forms.ValidationError(
+                "Maximum file size is 5 MB."
+            )
+
+        return resume

@@ -28,7 +28,7 @@ href="{% static 'css/candidate/dashboard.css' %}">
 
         <h1>
 
-            Welcome Back, Nikunj 👋
+            Welcome Back, {{ request.user.first_name }} 👋
 
         </h1>
 
@@ -58,7 +58,7 @@ href="{% static 'css/candidate/dashboard.css' %}">
 
             <h2>
 
-                78%
+                {{ profile_completion }}%
 
             </h2>
 
@@ -80,11 +80,11 @@ href="{% static 'css/candidate/dashboard.css' %}">
 
         </div>
 
-        <h2>78%</h2>
+        <h2>{{ profile_completion }}%</h2>
 
         <div class="progress">
 
-            <div class="progress-fill" style="width:78%"></div>
+            <div class="progress-fill" style="width:{{ profile_completion }}%;"></div>
 
         </div>
 
@@ -102,7 +102,7 @@ href="{% static 'css/candidate/dashboard.css' %}">
 
         </div>
 
-        <h2>86 / 100</h2>
+        <h2>{{ resume_score }} / 100</h2>
 
         <small>Excellent resume quality.</small>
 

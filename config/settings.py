@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'apps.website',
     "apps.accounts",
     "apps.candidate.apps.CandidateConfig",
+    "apps.recruiters.apps.RecruitersConfig",
+    "apps.jobs.apps.JobsConfig",
 
 ]
 
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    "apps.accounts.middleware.RoleAccessMiddleware",
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

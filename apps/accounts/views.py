@@ -14,6 +14,8 @@ from .email import send_otp_email
 from .models import EmailOTP
 from .models import generate_otp
 from django.contrib.auth import logout
+from .redirects import get_dashboard_redirect
+
 
 def register(request):
 
@@ -128,7 +130,7 @@ def login_view(request):
                     f"Welcome back, {user.first_name}!"
                 )
 
-                return redirect("home")
+                return redirect(get_dashboard_redirect(user))
 
             else:
 
@@ -466,3 +468,21 @@ def logout_view(request):
     )
 
     return redirect("accounts:login")
+
+
+
+
+
+def access_denied(request):
+
+    context = {
+        "dashboard_url": get_dashboard_redirect(request.user),
+        "reason": request.GET.get("reason"),
+    }
+
+    return render(
+        request,
+        "accounts/access_denied.html",
+        context,
+        status=403,
+    )

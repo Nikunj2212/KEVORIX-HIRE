@@ -1,0 +1,160 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Company Profile | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/recruiters/company-profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="company-profile-section">
+
+    <div class="company-profile-container">
+
+        <div class="company-cover">
+
+            {% if company.cover_image %}
+                <img src="{{ company.cover_image.url }}" alt="{{ company.name }}">
+            {% else %}
+                <div class="cover-placeholder"></div>
+            {% endif %}
+
+        </div>
+
+        <div class="company-card">
+
+            <div class="company-header">
+
+                <div class="company-logo">
+
+                    {% if company.logo %}
+                        <img src="{{ company.logo.url }}" alt="{{ company.name }}">
+                    {% else %}
+                        <div class="logo-placeholder">
+                            {{ company.name|first }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="company-info">
+
+                    <div class="company-title">
+
+                        <h1>{{ company.name }}</h1>
+
+                        {% if company.is_verified %}
+                            <span class="verified-badge">
+                                ✓ Verified
+                            </span>
+                        {% endif %}
+
+                    </div>
+
+                    <p>{{ company.tagline }}</p>
+
+                </div>
+
+                <div>
+
+                    <a href="{% url 'recruiters:edit_company' %}" class="btn-primary">
+                        Edit Company
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="company-details">
+
+                <div class="detail-card">
+                    <span>Industry</span>
+                    <strong>{{ company.industry }}</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Organization</span>
+                    <strong>{{ company.organization_type }}</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Company Size</span>
+                    <strong>{{ company.company_size }}</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Founded</span>
+                    <strong>{{ company.founded_year }}</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Email</span>
+                    <strong>{{ company.email }}</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Phone</span>
+                    <strong>{{ company.phone }}</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Website</span>
+                    <strong>{{ company.website }}</strong>
+                </div>
+
+                <div class="detail-card">
+                    <span>Location</span>
+                    <strong>
+                        {{ company.city }},
+                        {{ company.state }},
+                        {{ company.country }}
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="about-company">
+
+                <h2>About Company</h2>
+
+                <p>
+
+                    {{ company.description|default:"No description available." }}
+
+                </p>
+
+            </div>
+
+            <div class="social-links">
+
+                {% if company.linkedin %}
+                    <a href="{{ company.linkedin }}" target="_blank">LinkedIn</a>
+                {% endif %}
+
+                {% if company.facebook %}
+                    <a href="{{ company.facebook }}" target="_blank">Facebook</a>
+                {% endif %}
+
+                {% if company.twitter %}
+                    <a href="{{ company.twitter }}" target="_blank">Twitter</a>
+                {% endif %}
+
+                {% if company.instagram %}
+                    <a href="{{ company.instagram }}" target="_blank">Instagram</a>
+                {% endif %}
+
+                {% if company.youtube %}
+                    <a href="{{ company.youtube }}" target="_blank">YouTube</a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

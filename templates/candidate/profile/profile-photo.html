@@ -1,0 +1,62 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}Profile Photo | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/photo-upload.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="upload-page">
+
+    <div class="upload-card">
+
+        <h2>Change Profile Photo</h2>
+
+        <p>
+            Upload a professional profile picture.
+        </p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+
+                <input
+                    type="file"
+                    name="profile_photo"
+                    accept="image/*"
+                    required>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Upload Photo
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/candidate/profile/photo-upload.js' %}"></script>
+{% endblock %}

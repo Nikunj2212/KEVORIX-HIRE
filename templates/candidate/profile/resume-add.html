@@ -1,0 +1,102 @@
+{% extends "candidate/base/candidate_base.html" %}
+{% load static %}
+
+{% block title %}Upload Resume | KEVORIX Hire{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/candidate/profile/resume-form.css' %}">
+{% endblock %}
+
+{% block candidate_content %}
+
+<div class="resume-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <a href="{% url 'candidate:profile' %}" class="back-link">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+            <h1>Upload Resume</h1>
+
+            <p>
+
+                Upload your latest professional resume in PDF format.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="resume-card">
+
+        <div class="card-header">
+
+            <h2>Resume</h2>
+
+            <p>
+
+                Only PDF files are accepted (Maximum 5 MB).
+
+            </p>
+
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <div class="form-group full-width">
+
+                    <label>Select Resume (PDF)</label>
+
+                    {{ form.resume }}
+
+                    {% if form.resume.errors %}
+
+                        <small class="error-text">
+
+                            {{ form.resume.errors|join:", " }}
+
+                        </small>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <a href="{% url 'candidate:profile' %}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+                <button type="submit" class="btn btn-primary">
+
+                    Upload Resume
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/candidate/profile/resume-form.js' %}"></script>
+
+{% endblock %}

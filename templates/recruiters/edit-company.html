@@ -1,0 +1,90 @@
+{% extends "recruiters/create-company.html" %}
+
+{% block title %}
+Edit Company | KEVORIX Hire
+{% endblock %}
+
+{% block content %}
+
+<section class="company-section">
+
+    <div class="company-container">
+
+        <div class="company-header">
+
+            <h1>Edit Company</h1>
+
+            <p>
+                Update your company information.
+            </p>
+
+        </div>
+
+        <div class="company-card">
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tagline</label>
+                        {{ form.tagline }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Industry</label>
+                        {{ form.industry }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Organization Type</label>
+                        {{ form.organization_type }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Company Size</label>
+                        {{ form.company_size }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Founded Year</label>
+                        {{ form.founded_year }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Website</label>
+                        {{ form.website }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        {{ form.description }}
+                    </div>
+
+                </div>
+
+                <button class="btn-primary" type="submit">
+                    Save Changes
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

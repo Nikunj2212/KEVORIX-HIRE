@@ -164,15 +164,27 @@
 
                     <div class="user-avatar">
 
-                        N
+                        {{ request.user.first_name|first|upper }}
 
                     </div>
 
                     <div>
 
-                        <h4>Nikunj Panchal</h4>
+                        <h4>
 
-                        <small>Candidate</small>
+                            {% if request.user.get_full_name %}
+                                {{ request.user.get_full_name }}
+                            {% else %}
+                                {{ request.user.email }}
+                            {% endif %}
+
+                        </h4>
+
+                        <small>
+
+                            {{ request.user.get_role_display }}
+
+                        </small>
 
                     </div>
 
@@ -309,7 +321,7 @@
 
                             <div class="navbar-avatar">
 
-                                N
+                                {{ request.user.first_name|first|upper }}
 
                             </div>
 
@@ -317,18 +329,22 @@
 
                                 <h4>
 
-                                    Nikunj Panchal
+                                    {% if request.user.get_full_name %}
+                                        {{ request.user.get_full_name }}
+                                    {% else %}
+                                        {{ request.user.email }}
+                                    {% endif %}
 
                                 </h4>
 
                                 <small>
 
-                                    Candidate
+                                    {{ request.user.get_role_display }}
 
                                 </small>
 
                             </div>
-
+                            
                             <i class="bi bi-chevron-down"></i>
 
                         </div>

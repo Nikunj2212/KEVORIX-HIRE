@@ -1,42 +1,225 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import CandidateProfile
-from .forms import UserForm, CandidateProfileForm
-from .forms import UserForm,CandidateProfileForm,PersonalInformationForm
 from django.contrib import messages
 from django.db import transaction
-from .forms import UserForm,CandidateProfileForm,PersonalInformationForm,AboutForm
 from django.shortcuts import render,redirect,get_object_or_404
-from .forms import UserForm,CandidateProfileForm,PersonalInformationForm,AboutForm,EducationForm
 from .models import *
-from .models import CandidateProfile, Education, Experience
-from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm
-from .models import CandidateProfile, Education, Experience, Skill
-from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm
-from .models import CandidateProfile, Education, Experience, Skill, Project
-from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm
 from django.urls import reverse
-from .models import CandidateProfile, Education, Experience, Skill, Project, Certificate
-from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm, CertificateForm
-from .models import CandidateProfile, Education, Experience, Skill, Project, Certificate, Language
-from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm, CertificateForm, LanguageForm
-from .models import CandidateProfile, Education, Experience, Skill, Project, Certificate, Language, SocialLink
-from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm, CertificateForm, LanguageForm, SocialLinkForm
+from .models import CandidateProfile, Education, Experience, Skill, Project, Certificate, Language, SocialLink,Resume
+from .forms import UserForm, CandidateProfileForm, PersonalInformationForm, AboutForm, EducationForm, ExperienceForm, SkillForm, ProjectForm, CertificateForm, LanguageForm, SocialLinkForm,ResumeForm
+from django.core.files.storage import default_storage
+from django.views.decorators.http import require_POST
+from apps.candidate.utils.profile_completion import calculate_profile_completion
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.shortcuts import redirect
+from apps.candidate.ai.cover_service import generate_ai_cover
+from apps.candidate.models import CandidateProfile
+from apps.candidate.ai.services.resume_import_service import ResumeImportService
+import logging
+from django.db.models import Count
+from .models import (CandidateProfile,Education,Experience,Skill,Project,Certificate,Language,Resume,)
+from apps.accounts.decorators import (candidate_required,email_verified_required,)
+
+logger = logging.getLogger(__name__)
 
 
-
-@login_required(login_url="accounts:login")
+@candidate_required
+@email_verified_required
 def dashboard(request):
 
-    return render(request,"candidate/dashboard.html")
-    
+    user = request.user
+
+    profile = (
+        CandidateProfile.objects
+        .select_related("user")
+        .filter(user=user)
+        .first()
+    )
+
+    if not profile:
+        messages.error(request, "Candidate profile not found.")
+        return redirect("candidate:profile")
+
+    # ===========================
+    # Counts
+    # ===========================
+
+    education_count = Education.objects.filter(profile=profile).count()
+
+    experience_count = Experience.objects.filter(profile=profile).count()
+
+    skill_count = Skill.objects.filter(profile=profile).count()
+
+    project_count = Project.objects.filter(profile=profile).count()
+
+    certificate_count = Certificate.objects.filter(profile=profile).count()
+
+    language_count = Language.objects.filter(profile=profile).count()
+
+    # ===========================
+    # Latest Records
+    # ===========================
+
+    latest_education = (
+        Education.objects
+        .filter(profile=profile)
+        .order_by("-created_at")
+        .first()
+    )
+
+    latest_experience = (
+        Experience.objects
+        .filter(profile=profile)
+        .order_by("-created_at")
+        .first()
+    )
+
+    latest_project = (
+        Project.objects
+        .filter(profile=profile)
+        .order_by("-created_at")
+        .first()
+    )
+
+    latest_certificate = (
+        Certificate.objects
+        .filter(profile=profile)
+        .order_by("-created_at")
+        .first()
+    )
+
+    latest_resume = (
+        Resume.objects
+        .filter(profile=profile)
+        .first()
+    )
+
+    social_links = (
+        SocialLink.objects
+        .filter(profile=profile)
+        .first()
+    )
+
+    # ===========================
+    # Profile Completion
+    # ===========================
+
+    profile_completion = profile.profile_completion
+
+    # ===========================
+    # Resume Score
+    # (Future AI Feature)
+    # ===========================
+
+    resume_score = 0
+
+    if latest_resume:
+        resume_score = profile_completion
+
+    # ===========================
+    # AI Suggestions
+    # ===========================
+
+    ai_suggestions = []
+
+    if profile_completion < 100:
+        ai_suggestions.append(
+            "Complete your profile to improve recruiter visibility."
+        )
+
+    if education_count == 0:
+        ai_suggestions.append(
+            "Add your education details."
+        )
+
+    if experience_count == 0:
+        ai_suggestions.append(
+            "Add your work experience."
+        )
+
+    if skill_count < 5:
+        ai_suggestions.append(
+            "Add more technical skills."
+        )
+
+    if project_count == 0:
+        ai_suggestions.append(
+            "Add at least one project."
+        )
+
+    if certificate_count == 0:
+        ai_suggestions.append(
+            "Upload your certificates."
+        )
+
+    if language_count == 0:
+        ai_suggestions.append(
+            "Add your languages."
+        )
+
+    if latest_resume is None:
+        ai_suggestions.append(
+            "Upload your resume."
+        )
+
+    # ===========================
+    # Context
+    # ===========================
+
+    context = {
+
+        "profile": profile,
+
+        "social_links": social_links,
+
+        "profile_completion": profile_completion,
+
+        "resume_score": resume_score,
+
+        "education_count": education_count,
+
+        "experience_count": experience_count,
+
+        "skill_count": skill_count,
+
+        "project_count": project_count,
+
+        "certificate_count": certificate_count,
+
+        "language_count": language_count,
+
+        "latest_education": latest_education,
+
+        "latest_experience": latest_experience,
+
+        "latest_project": latest_project,
+
+        "latest_certificate": latest_certificate,
+
+        "latest_resume": latest_resume,
+
+        "ai_suggestions": ai_suggestions,
+
+    }
+
+    return render(
+        request,
+        "candidate/dashboard.html",
+        context,
+    )
     
 
 @login_required(login_url="accounts:login")
 def profile(request):
-
+    
     profile = CandidateProfile.objects.get(user=request.user)
+ 
+    completion = calculate_profile_completion(profile)
+
+    if profile.profile_completion != completion:
+        profile.profile_completion = completion
+        profile.save(update_fields=["profile_completion"])
 
     educations = profile.educations.all()
     
@@ -49,6 +232,8 @@ def profile(request):
     certificates = profile.certificates.all()
     languages = profile.languages.all()
     social_links = SocialLink.objects.filter(profile=profile).first()
+    
+    resume = Resume.objects.filter(profile=profile).first()
 
     context = {
 
@@ -60,6 +245,7 @@ def profile(request):
         "certificates": certificates,
         "languages": languages,
         "social_links": social_links,
+        "resume": resume,
     }
 
     return render(
@@ -134,6 +320,7 @@ def personal_edit(request):
 
         form = PersonalInformationForm(
             request.POST,
+            request.FILES,
             instance=profile,
             user=request.user,
         )
@@ -149,7 +336,9 @@ def personal_edit(request):
                 "Personal information updated successfully."
             )
 
-            return redirect(f"{reverse('candidate:profile')}#personal")
+            return redirect(
+                f"{reverse('candidate:profile')}#personal"
+            )
 
         else:
 
@@ -178,6 +367,123 @@ def personal_edit(request):
         "candidate/profile/personal-edit.html",
         context,
     )
+    
+ 
+@login_required(login_url="accounts:login")
+def cover_photo(request):
+
+    profile, created = CandidateProfile.objects.get_or_create(
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        if "cover_photo" in request.FILES:
+
+            if profile.cover_photo:
+                profile.cover_photo.delete(save=False)
+
+            profile.cover_photo = request.FILES["cover_photo"]
+            profile.save()
+
+            messages.success(
+                request,
+                "Cover photo updated successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#profile")
+
+    return render(
+        request,
+        "candidate/profile/cover-photo.html",
+        {
+            "profile": profile,
+        },
+    )
+    
+    
+@login_required(login_url="accounts:login")
+@require_POST
+def remove_cover_photo(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user,
+    )
+
+    if profile.cover_photo:
+
+        profile.cover_photo.delete(save=False)
+
+        profile.cover_photo = None
+
+        profile.save()
+
+        messages.success(
+            request,
+            "Cover photo removed successfully."
+        )
+
+    return redirect(f"{reverse('candidate:profile')}#profile")
+ 
+ 
+@login_required(login_url="accounts:login")
+def profile_photo(request):
+
+    profile, created = CandidateProfile.objects.get_or_create(
+        user=request.user
+    )
+
+    if request.method == "POST":
+
+        if "profile_photo" in request.FILES:
+
+            if profile.profile_photo:
+                profile.profile_photo.delete(save=False)
+
+            profile.profile_photo = request.FILES["profile_photo"]
+            profile.save()
+
+            messages.success(
+                request,
+                "Profile photo updated successfully."
+            )
+
+            return redirect(f"{reverse('candidate:profile')}#profile")
+
+    return render(
+        request,
+        "candidate/profile/profile-photo.html",
+        {
+            "profile": profile,
+        },
+    )
+    
+    
+@login_required(login_url="accounts:login")
+@require_POST
+def remove_profile_photo(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user,
+    )
+
+    if profile.profile_photo:
+
+        profile.profile_photo.delete(save=False)
+
+        profile.profile_photo = None
+
+        profile.save()
+
+        messages.success(
+            request,
+            "Profile photo removed successfully."
+        )
+
+    return redirect(f"{reverse('candidate:profile')}#profile")
+ 
     
 @login_required(login_url="accounts:login")
 def about_edit(request):
@@ -1227,3 +1533,194 @@ def social_delete(request, pk):
     return redirect(
         f"{reverse('candidate:profile')}#social-links"
     )
+    
+    
+@login_required(login_url="accounts:login")
+def resume_add(request):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    resume = Resume.objects.filter(
+        profile=profile
+    ).first()
+
+    if resume:
+
+        return redirect(
+            "candidate:resume_edit",
+            pk=resume.pk
+        )
+
+    if request.method == "POST":
+
+        form = ResumeForm(
+            request.POST,
+            request.FILES
+        )
+
+        if form.is_valid():
+
+            resume = form.save(commit=False)
+
+            resume.profile = profile
+
+            resume.save()
+
+            result = ResumeImportService(profile).import_resume(
+                resume.resume.path
+            )
+
+            if result["success"]:
+
+                messages.success(
+                    request,
+                    "Resume uploaded and AI profile generated successfully."
+                )
+
+            else:
+
+                messages.warning(
+                    request,
+                    result["message"]
+                )
+
+            return redirect(
+                f"{reverse('candidate:profile')}#resume"
+            )
+
+    else:
+
+        form = ResumeForm()
+
+    return render(
+        request,
+        "candidate/profile/resume-add.html",
+        {
+            "form": form,
+            "profile": profile,
+        }
+    )
+
+
+@login_required(login_url="accounts:login")
+def resume_edit(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    resume = get_object_or_404(
+        Resume,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        form = ResumeForm(
+            request.POST,
+            request.FILES,
+            instance=resume
+        )
+
+        if form.is_valid():
+
+            resume = form.save()
+
+            result = ResumeImportService(profile).import_resume(
+                resume.resume.path
+            )
+
+            if result["success"]:
+
+                messages.success(
+                    request,
+                    "Resume updated and AI profile regenerated successfully."
+                )
+
+            else:
+
+                messages.warning(
+                    request,
+                    result["message"]
+                )
+
+            return redirect(
+                f"{reverse('candidate:profile')}#resume"
+            )
+
+    else:
+
+        form = ResumeForm(
+            instance=resume
+        )
+
+    return render(
+        request,
+        "candidate/profile/resume-edit.html",
+        {
+            "form": form,
+            "profile": profile,
+            "resume": resume,
+        }
+    )
+
+@login_required(login_url="accounts:login")
+def resume_delete(request, pk):
+
+    profile = get_object_or_404(
+        CandidateProfile,
+        user=request.user
+    )
+
+    resume = get_object_or_404(
+        Resume,
+        pk=pk,
+        profile=profile
+    )
+
+    if request.method == "POST":
+
+        if resume.resume:
+            resume.resume.delete(save=False)
+
+        resume.delete()
+
+        messages.success(
+            request,
+            "Resume deleted successfully."
+        )
+
+    return redirect(
+        f"{reverse('candidate:profile')}#resume"
+    )
+    
+    
+@login_required(login_url="accounts:login")
+def generate_ai_cover_view(request):
+
+    if request.method != "POST":
+        return redirect("candidate:profile")
+
+    profile = CandidateProfile.objects.get(user=request.user)
+
+    try:
+        generate_ai_cover(profile)
+
+        messages.success(
+            request,
+            "AI cover generated successfully."
+        )
+
+    except Exception as e:
+
+        messages.error(
+            request,
+            f"AI Cover Generation Failed: {e}"
+        )
+
+    return redirect("candidate:profile")

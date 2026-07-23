@@ -33,5 +33,14 @@ urlpatterns = [
     path("profile/social/add/", views.social_add, name="social_add"),
     path("profile/social/<int:pk>/edit/", views.social_edit, name="social_edit"),
     path("profile/social/<int:pk>/delete/", views.social_delete, name="social_delete"),
+    path("profile/resume/add/", views.resume_add, name="resume_add"),
+    path("profile/resume/<int:pk>/edit/", views.resume_edit, name="resume_edit"),
+    path("profile/resume/<int:pk>/delete/", views.resume_delete, name="resume_delete"),
+    path("profile/cover-photo/", views.cover_photo, name="cover_photo"),
+    path("profile/cover-photo/remove/", views.remove_cover_photo, name="remove_cover_photo"),
+    path("profile/profile-photo/", views.profile_photo, name="profile_photo"),
+    path("profile/profile-photo/remove/", views.remove_profile_photo, name="remove_profile_photo"),
+    path("profile/generate-cover/",views.generate_ai_cover_view,name="generate_ai_cover"),
+
 
 ]
